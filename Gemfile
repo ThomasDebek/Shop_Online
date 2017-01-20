@@ -26,7 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 
-
 gem 'faker'                     # sluzy do generowania danych ktore sa falszywe ale wygladaja na prawdziwe
 gem 'letter_opener'             # sluzy do generowania malera, ktory nie jest wysylany tylko pokazuje zawartos maila
 gem 'carrierwave'               # zalanczanie plikow i przetwarzanie ich do miniatuerk
