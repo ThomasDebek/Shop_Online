@@ -35,4 +35,11 @@
      - i ustawienie jezyka polskiego
            config.i18n.default_locale = :pl
            dziki temu komiunikaty o bledach beda automatycznie spolszczone
-           
+
+
+  9.2 Zaplanowanie prac ze sklepem, wygenerowanie szablonow
+       ( Instalcja_podstawych_skladowych_sklepu_mni_bootstrap_modele_kontrolry)
+    * Najpierw wygenerujemy bootstrapa       - rails g bootstrap:install static
+    * Instalacja kaminari dla bootstrapa     - rails g kaminari:views bootstrap3
+    * Simpe_form kompatybilny z bootstrapem  - rails g simple_form:install --bootstrap   (https://github.com/plataformatec/simple_form)
+
