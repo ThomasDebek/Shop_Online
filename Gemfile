@@ -23,6 +23,21 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+
+
+
+
+gem 'faker'                     # sluzy do generowania danych ktore sa falszywe ale wygladaja na prawdziwe
+gem 'letter_opener'             # sluzy do generowania malera, ktory nie jest wysylany tylko pokazuje zawartos maila
+gem 'carrierwave'               # zalanczanie plikow i przetwarzanie ich do miniatuerk
+gem 'mini_magick'               # dodatek do carrierwawe i sluzy do przetwarzania miniatuerk
+gem 'simple_form'               # proste generownaie formularze
+gem 'twitter-bootstrap-rails'   # bibloteka dodajaca nam bootstrapa do projektu
+gem 'ransack'                   # sluzy do generowania formularzy wyszukiwania (np. do przeszukiwania produktow)
+gem 'kaminari'                  # sluzy do paginacji
+gem 'rails-i18n'                # sluzy do spolszczenia polskich komunikacji
+gem 'statesman'                 # sluzy do maszyny stanow (czyli rozne statusy: nowe, potwirdzony, anulowano, oplacony czyli przelancza nas z jednego stanu w drugi np. ze przesylka zostala nadana)
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

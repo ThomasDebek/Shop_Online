@@ -1,28 +1,33 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Stworzmy sklep
+   * Nasz sklep bedzie wyposazony w skryp ktory bedzie sluzyl do wygnerowania losowych prodkuktow
+     kategori oraz obrazkow
+   * Bedzie mozna wejsc do kazdego prodkutu, zamowic go z poziomu produktu
+   * Jak rownież z pozoimu kategorii takze bedzie mozna dokanac zamowien
+   * Bedzie mial pelna nawigacje
+   * Na gorze strony bedzie koszyk z podgladem ile mamy produktowy w koszyku i ile bedzie nasz kosztowac zamowienie
+   * Bedziemy miele formularz dostawy i rodzaj dostawy
+   * Bedziemy mieli potwerdzenie zamowienia i gdy wyslemy zamowienie bedzie wysylany mail z potwierdzeniem
+   * Bedzie posiadal panel admina, zabezpieczony haslem
+   * Bedziemy mieli mozliwosc zarzadzaniem produktami z poziomu admina
+   * Mozliwosc przesukiwania prodkutow
+   * Sklep bedzie takze sledzil status zamowienia
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+  * Pierwsza rzecz to dodanie potrzebnych gemow (wiekaszosc naraz dodam)
+
+                gem 'faker'                     # sluzy do generowania danych ktore sa falszywe ale wygladaja na prawdziwe
+                gem 'letter_opener'             # sluzy do generowania malera i ktory nie jest wysylany tylko pokazuje zawartos maila
+                gem 'carrierwave'               # zalanczanie plikow i przetwarzanie ich do miniatuerk
+                gem 'mini_magick'               # dodatek do carrierwawe i sluzy do przetwarzania miniatuerk
+                gem 'simple_form'               # proste generownaie formularze
+                gem 'twitter-bootstrap-rails'   # bibloteka dodajaca nam bootstrapa do projektu
+                gem 'ransack'                   # sluzy do generowania formularzy wyszukiwania (np. do przeszukiwania produktow)
+                gem 'kaminari'                  # sluzy do paginacji
+                gem 'rails-i18n'                # sluzy do spolszczenia polskich komunikacji
+                gem 'statesman'                 # sluzy do maszyny stanow (czyli rozne statusy: nowe, potwirdzony, anulowano, oplacony czyli przelancza nas z jednego stanu w drugi np. ze przesylka zostala nadana)
+  * bundle
+  ** config/environments/development.rb
+     - i ustawiamy zeby maile wysylane byle przez letter_openera:
+           # Czyli zamiast wysylac prawdziwego maila - bedziemy te maile otwierac w przegladarce
+            config.action_mailer.delivery_method = :letter_opener
