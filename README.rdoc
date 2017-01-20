@@ -43,3 +43,30 @@
     * Instalacja kaminari dla bootstrapa     - rails g kaminari:views bootstrap3
     * Simpe_form kompatybilny z bootstrapem  - rails g simple_form:install --bootstrap   (https://github.com/plataformatec/simple_form)
 
+   ** Czas na wygenerowanie kontrollerow:
+       - rails g controller products index show  (tu potrzebujemy tylko dwuch akcji)
+       - rails g controller categories show      (dodamy mozliwosc wyswietlania zawartosci kategori, czyli tylko jednej akcji show)
+       - rails g controller static terms privacy shipping about ( potrzebujemy kontrollera ktory bedzie przechowywal nasze statyczne strony typu, regulamin czy polityka sklepu)
+                        zawiera:
+                                terms     - regulamin,
+                                privacy   - polityka prywatnosci,
+                                shipping  - informacje na temat dostawy i
+                                about     - informacje o sklepie )
+   ** Teraz modele
+      - rails g model category name:string  (Wiemy ze napewno bedziemy mieli produkty podzielone na kategorie, wiec z tad model o nazwie kategoraria i bedzie posadala name)
+      - rails g model product  name:string description:text long_description:text photo:string price:decimal category:belongs_to
+                        wiemy takze ze musimy miec produkty ktore beda zwierac:
+                        name                  - nazwe
+                        description           - opis
+                        long_description      - dluzszy opis, bedziemy wyswietlac go tylko w szczegolach danego produktu
+                        photo                 - pole do przechowywania sciezki do zdjecia danego produktu
+                        price                 - cena
+                        category:belongs_to   - ostatecznie produkt bedzie nalezal do jakiejs kategorii
+   ** Wiemy, ze produkty beda posadaly zdjaca.  Wiec musimy wygenerowac uploader dla CarrierWave czyli plikow ze zdjeciami oraz ich obrubke, np. generowanie miniatur o odpowiednim rozmiarze tak aby pasowaly do desingu
+      - rails generate uploader product_photo
+
+
+
+
+
+
