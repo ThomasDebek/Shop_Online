@@ -31,3 +31,8 @@
      - i ustawiamy zeby maile wysylane byle przez letter_openera:
            # Czyli zamiast wysylac prawdziwego maila - bedziemy te maile otwierac w przegladarce
             config.action_mailer.delivery_method = :letter_opener
+  ** config/application.rb
+     - i ustawienie jezyka polskiego
+           config.i18n.default_locale = :pl
+           dziki temu komiunikaty o bledach beda automatycznie spolszczone
+           
