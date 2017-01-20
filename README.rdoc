@@ -12,6 +12,8 @@
    * Mozliwosc przesukiwania prodkutow
    * Sklep bedzie takze sledzil status zamowienia
 
+  * rails g Shop_Online -d mysql
+
 
 
   * Pierwsza rzecz to dodanie potrzebnych gemow (wiekaszosc naraz dodam)
@@ -64,6 +66,8 @@
                         category:belongs_to   - ostatecznie produkt bedzie nalezal do jakiejs kategorii
    ** Wiemy, ze produkty beda posadaly zdjaca.  Wiec musimy wygenerowac uploader dla CarrierWave czyli plikow ze zdjeciami oraz ich obrubke, np. generowanie miniatur o odpowiednim rozmiarze tak aby pasowaly do desingu
       - rails generate uploader product_photo
+   * rake db:create    - poniewaz mamy mysql
+   * rake db:migrate
 
 
 
