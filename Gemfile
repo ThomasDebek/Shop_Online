@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 
+gem 'thor', '~> 0.19.3'  # uzylem go poniewaz jakies zaleznosci systemowe wyzucal w nowych railsach
+
+
 
 
 gem 'faker'                     # sluzy do generowania danych ktore sa falszywe ale wygladaja na prawdziwe

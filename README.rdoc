@@ -69,6 +69,8 @@
    * rake db:create    - poniewaz mamy mysql
    * rake db:migrate
 
+   9.3 Skonfigurowanie_adresow_url_oraz_modeli
+
 
 
 
