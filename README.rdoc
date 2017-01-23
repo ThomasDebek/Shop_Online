@@ -107,6 +107,26 @@
                                                                      # Oraz nazwe klasy, ktora obsluguje dane uploadsy
                end
 
+      ** Teraz plik z routsami
+        - Ustawmy nasze główne configi
+            resources :products, only: [:show, :index]     # nasz resources products bedzie posiadal tylko dwie akcje
+            resources :categories, only: [:show]           # dodatkowo zadeklarujemy kategorie ktora bedzie posiadala tylko jedna akcje
+            root to: 'products#index'                      # i nasz glowny adres
+
+        - Warto ustwic jak beda wygladaly adresy url naszych statycznych stron
+             get 'regulamin', to: "static#terms", as: :terms                # Czyli wchodzac do akcji (slesh regulamin) /regulamin, bedziemy kierowac do kotrollera static i akcji terms i url nazwiemy terms (termss_path)
+             get 'polityka-prywatnosci', to: "static#privacy", as: :privacy
+             get 'dostawa', to: "static#shipping", as: :shipping
+             get 'o-sklepie', to: "static#about", as: :about
+
+        * Odpalmy nasz serwer
+
+        ** Teraz zajmniemy sie zaplanowaniem desingu naszego sklepu
+           - zapelnimy go falszywymi danymi od fakera - tylko po to zeby zobaczyc jak bedzie wygladac
+
+
+               
+
 
 
 

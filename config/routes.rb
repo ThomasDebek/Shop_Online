@@ -1,17 +1,35 @@
 Rails.application.routes.draw do
-  get 'static/terms'
 
-  get 'static/privacy'
 
-  get 'static/shipping'
+  # Te adresy takze usowamy i zastapimy je innym rozwiazaniem
+  #get 'static/terms'
+  #get 'static/privacy'
+  #get 'static/shipping'
+  #get 'static/about'
 
-  get 'static/about'
+  get 'regulamin', to: "static#terms", as: :terms                # Czyli wchodzac do akcji (slesh regulamin) /regulamin,
+                                                                 # bedziemy kierowac do kotrollera static i akcji terms i url nazwiemy terms (termss_path)
+  get 'polityka-prywatnosci', to: "static#privacy", as: :privacy
+  get 'dostawa', to: "static#shipping", as: :shipping
+  get 'o-sklepie', to: "static#about", as: :about
 
-  get 'categories/show'
 
-  get 'products/index'
 
-  get 'products/show'
+
+
+
+
+  #usowamy ale je zastapimy je resources
+  #get 'categories/show'
+  #get 'products/index'
+  #get 'products/show'
+
+  resources :products, only: [:show, :index]     # nasz resources products bedzie posiadal tylko dwie akcje
+  resources :categories, only: [:show]           #dodatkowo zadeklarujemy kategorie
+  root to: 'products#index'                      #nasz glowny adres
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
