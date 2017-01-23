@@ -121,8 +121,14 @@
 
         * Odpalmy nasz serwer
 
-        ** Teraz zajmniemy sie zaplanowaniem desingu naszego sklepu
-           - zapelnimy go falszywymi danymi od fakera - tylko po to zeby zobaczyc jak bedzie wygladac
+
+9.4 Szkice listy produktow
+    ** Teraz zajmniemy sie zaplanowaniem desingu naszego sklepu
+     - zapelnimy go falszywymi danymi od fakera - tylko po to zeby zobaczyc jak bedzie wygladac
+     - naszkicujemy nasz layots i szczegoly naszego leyoutu
+     - linki gorne naszego menu
+     - gorna belka nawigacyjna
+     
 
 
                
