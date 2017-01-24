@@ -218,6 +218,7 @@
 
       - rails s
       - po odswiezeniu strony nazwy sie beda zmieniac, poniewaz sa generowane losowo przez nasz helper Faker
+      ** Dodajmy teraz naglwej ze sa to produkty najnowsze
 
 
 

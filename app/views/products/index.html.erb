@@ -1,3 +1,4 @@
+<h1>Najnowsze produkty</h1>
 <%= (1..9).each_slice(3) do |slice| %>                                                       <!-- Bedziemy wyswietlac 9 elementow, wiec od 1 do 9 sobie wyliczymy i uzyjemy helpera  each_slice ktory nam podzieli te tablice na iles tablic, ktora kazda z nich bedzie zawierala po trzy elementy -->
     <div class="row">                                                                        <!-- Produkty bedziemy wyswietlac w 3 kolumnach wiec uzyjemy systemu gird z bootstrapa -->
       <% slice.each do |product| %>                                                          <!-- Kazda z tych trujek jest tablica po ktorej bedzimey literowac -->
@@ -12,7 +13,7 @@
                 <p class="lead"><%= number_to_currency Faker::Number.decimal(2, 2) %></p>             <!--  I tutaj cena danego produktu-->
                 <p>
                   <%= link_to "#", class: "btn btn-primary" do %>
-                    <span class="fa fa-shopping-cart"> Dodaj do koszyka             <!-- I tu mamy bardzo ciekawa klase bootstrapa fa dlatego ze mamy strone http://fontawesome.io  czyli ikonki, fa-to pierwsza klasa ze to fontawsome i druga klasa to opis ikonik-->
+                    <span class="fa fa-shopping-cart"></span> Dodaj do koszyka             <!-- I tu mamy bardzo ciekawa klase bootstrapa fa dlatego ze mamy strone http://fontawesome.io  czyli ikonki, fa-to pierwsza klasa ze to fontawsome i druga klasa to opis ikonik-->
                   <% end %>
                 </p>
               </div>
