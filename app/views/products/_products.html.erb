@@ -1,0 +1,23 @@
+<%= (1..9).each_slice(3) do |slice| %>                                                       <!-- Bedziemy wyswietlac 9 elementow, wiec od 1 do 9 sobie wyliczymy i uzyjemy helpera  each_slice ktory nam podzieli te tablice na iles tablic, ktora kazda z nich bedzie zawierala po trzy elementy -->
+    <div class="row">                                                                        <!-- Produkty bedziemy wyswietlac w 3 kolumnach wiec uzyjemy systemu gird z bootstrapa -->
+      <% slice.each do |product| %>                                                          <!-- Kazda z tych trujek jest tablica po ktorej bedzimey literowac -->
+          <div class="col-md-4">                                                             <!-- Skoro chcemy 3 produkty w kazdym wierszu, i skoro mamy 12 kratek w naszym girdzie, to kazdy produkt zajmnie 1/3 z tych 12 czyli 4kratki   -->
+            <div class="thumbnail">                                                          <!-- Z kolieji ta klasa jest klasa ktora reprezentuje miniaturke -->
+              <%= link_to product_path(product) do %>                                              <!-- link_to przyjmuje zazwyczaj parametr jakis tekst, natomiast drugi to jakas sciezka, natomiat kiedy nie podamy mu tekstu do linku i uczynimy ten helper blokowym (do i end) to zamiast scizki linkowej mozemy miec jako link np. OBRAZEK, WIEC JEZELI CHCEMY ZALINKOWAC OBRAZEK UZYWAMY DO zeby zasignalizowac ZE BEDZIE TO link blokowy i  tresci tego uzyjemy image_taga-->
+                  <%= image_tag Faker::Placeholdit.image("640x480", 'jpg', 'cccccc') %>      <!-- Faker oferuje nam skorzystanie z serwisu http://placehold.it i wygenerowac nam obrazki o danym rozmiarze-->
+              <% end %>
+              <div class="caption">
+                <h3><%= link_to Faker::Hacker.noun.titleize, product_path(1) %></h3>                  <!-- Tu mamy nazwe produkut z uzyciem helpera Faker::Hacker.noun -->
+                <p><%= simple_format(truncate(Faker::Hacker.say_something_smart, length: 90)) %></p>  <!--  Tutaj opis danego produktu, czyli jakies wygenerowane zdanie przez fakera -->
+                <p class="lead"><%= number_to_currency Faker::Number.decimal(2, 2) %></p>             <!--  I tutaj cena danego produktu-->
+                <p>
+                  <%= link_to "#", class: "btn btn-primary" do %>
+                      <span class="fa fa-shopping-cart"></span> Dodaj do koszyka             <!-- I tu mamy bardzo ciekawa klase bootstrapa fa dlatego ze mamy strone http://fontawesome.io  czyli ikonki, fa-to pierwsza klasa ze to fontawsome i druga klasa to opis ikonik-->
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% end %>

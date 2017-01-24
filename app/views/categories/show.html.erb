@@ -1,2 +1,10 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h1>Nazwa kategori</h1>
+
+<%= render partial: 'products/products', locals: { products: @products } %>
+
+<!-- Poprzednia nazwa parshala nie zadziala poniewaz railsy beda szukac praszala wylacznie
+     wewnatrz categories, a nasz parszal pochodzi z innego źrudla
+     ale jak railsom podamy pelna nazwe controllera czyli products i nazwe parszala czyli products
+     to railsy je znajda bez problemu
+     i wtedy wyswietli nam sie oczekiwany rezultat
+ -->
