@@ -129,8 +129,10 @@
      - linki gorne naszego menu
      - gorna belka nawigacyjna
 
-     ** Nawigacja - fac, ale to Zajebiste
-        <nav class="navbar navbar-inverse navbar-static-top">
+     ** Nawigacja - fac, ale to Zajebiste,
+      * Cala belka nawigacyjna jest oparta o klasy bootstrap
+
+        <nav class="navbar navbar-inverse navbar-static-top">     <!-- navbar-inverse, ta klasa domyslnie ma odwrocone kolory, ale teraz bedzie ciemna i bedzie miala bialy tekst -->
           <div class="container">
             <div class="navbar-header">
               <a class="navbar-brand" href="<%= root_path %>">Robo</a>
@@ -145,10 +147,42 @@
           </div>
         </nav>
 
+     ** Teraz wchodzac w start m.innymi na pasku nawigacji
+        - bedziemy chceli miec pasek boczny (sidebar)
+        - czyli tkzw. linki, beda po lewej w pionie
+        - a po prawej stronie tresc strony
+        - wszystkie te klasy ponizej sa wbudowane w bootstrapa
+
+        <div class="container-fluid">
+            <div class="row">               # Wszystko przechowujemy w divie o klasie row, i ktory przechowuje wiersz o systemie girdowym bootstrapa
+              <div class="col-md-2">
+                <h3>Kategorie</h3>
+                <ul class="nav nav-sidebar">
+                  <% Category.all.each do |category| %>
+                  <li <% if @category == category %>class="active"<% end %>>
+                    <%= link_to category.name, category_path(category) %>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="col-md-10">
+                <%= bootstrap_flash %>
+                <%= yield %>
+              </div>
+            </div>
+          </div>
 
 
-               
+          # gird jest pewnym systemem klockow o danym rozmiarze do ktorych wpisujemy tresc czyli:
+              <div class="col-md-2">     -> ta klasa, nazywa sie col-md-2, dwujka oznacza tutaj dwie kratki w systemie gridowym
+                                         -> bootstrapowy gird zawiera 12 kratek
+                                         -> a my uzywamy dwuch dwunastych 2/12 czyli 1/6 miejsca na ekranie na sidebar
 
+               <div class="col-md-10">   -> oraz 10/12 dziesiec dwunastych, czyli 5/6 na pozostala tresc
+                                         * Jezeli bysmy zmienili ten gorny na md-4, a dolny na md-8 to
+                                           wtedy bysmy mieli 4/12 i 8/12 to oczywiscie sidebar bedzie mial wieksza szerokkosc
+                                           ale za to bedziemy mieli miej miejsca na zawartosc strony
+          # Czyli bootstrap daje nam bardzo wygodne klasy do lokowania tresci zgodnie z layotsem kolumnowm
 
 
 
