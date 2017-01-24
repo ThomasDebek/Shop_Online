@@ -148,28 +148,28 @@
         </nav>
 
      ** Teraz wchodzac w start m.innymi na pasku nawigacji
+        - rails s i widzimy nasz szablonik
         - bedziemy chceli miec pasek boczny (sidebar)
         - czyli tkzw. linki, beda po lewej w pionie
         - a po prawej stronie tresc strony
         - wszystkie te klasy ponizej sa wbudowane w bootstrapa
 
-        <div class="container-fluid">
-            <div class="row">               # Wszystko przechowujemy w divie o klasie row, i ktory przechowuje wiersz o systemie girdowym bootstrapa
-              <div class="col-md-2">
-                <h3>Kategorie</h3>
-                <ul class="nav nav-sidebar">
-                  <% Category.all.each do |category| %>
-                  <li <% if @category == category %>class="active"<% end %>>
-                    <%= link_to category.name, category_path(category) %>
-                  </li>
-                  <% end %>
-                </ul>
-              </div>
-              <div class="col-md-10">
-                <%= bootstrap_flash %>
-                <%= yield %>
-              </div>
-            </div>
+          <div class="container-fluid">
+             <div class="row">                                     # Wszystko przechowujemy w divie o klasie row, i ktory przechowuje wiersz o systemie girdowym bootstrapa
+               <div class="col-md-2">
+                 <h3>Kategorie</h3>
+                     <ul class="nav nav-sidebar">
+                       <% (1..9).each do |category|%>              # Tutaj generamy 9 linkow do kategori 
+                           <li>
+                             <%= link_to "Kategoria#{category}", category_path(category) %>
+                           </li>
+                       <% end %>
+                     </ul>
+               </div>
+               <div class="col-md-10">
+                 <%= yield %>
+               </div>
+             </div>
           </div>
 
 
@@ -183,6 +183,7 @@
                                            wtedy bysmy mieli 4/12 i 8/12 to oczywiscie sidebar bedzie mial wieksza szerokkosc
                                            ale za to bedziemy mieli miej miejsca na zawartosc strony
           # Czyli bootstrap daje nam bardzo wygodne klasy do lokowania tresci zgodnie z layotsem kolumnowm
+
 
 
 
