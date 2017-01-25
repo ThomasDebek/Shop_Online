@@ -351,6 +351,55 @@
        rake db:drop db:create db:migrate db:seed        ->  to wszsytko mozemy wykonac za pomoca jednego polecenia
        widzimy ze wszystko dzila, i nasz skrypt wyswietla kropeczki (bedzie ich 200)
 
+ 9.7 Wyswietlanie produktow w bd
+     **
+     Nasze losowe dane zostaly juz dodane do bazy danych
+     - teraz mozemy przystapic do ich wyswietlenia
+
+     **
+     Zaczniemy od pliku z layotem, chcemy wyswietlac prawdziwe kategorie
+
+                   <!-- Nasz sidebar - pasek boczny -->
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-2">
+                            <h3>Kategorie</h3>
+                            <ul class="nav nav-sidebar">
+                              <% Category.all.each do |category| %>                        <!-- Wyswitlmy teraz prawdziwe kategorie -->
+                                  <li>
+                                    <%= link_to category.name, category_path(category) %>  <!-- 1-argumenty to category, a 2gim argumentem bedzie sciezka do category -->
+                                  </li>
+                              <% end %>
+                            </ul>
+                          </div>
+                          <div class="col-md-8">
+                            <%= yield %>
+                          </div>
+                        </div>
+                      </div>
+
+
+      - odswiezmy strone
+      - widzimy ze mamy teraz prawdziwe kategorie
+      - teraz jak wchodzimy do kategorii po pierwsze powinna nam sie wyswietlic nazwa kategori a nastepnie produkty
+      - wchodzimy do kontrollera controllers/categories_controller.rb
+
+
+              class CategoriesController < ApplicationController
+                def show
+                 @category = Category.find(params[:id])                        # i w akcji show powininsmy znalesc kategorie ktora chcemy wysietlac
+                 @products = @category.products.page(params[:page]).per(6)     # a po drugie znalezc produkty z tej kategorii i dodamy paginacje, na kazdej stronie 6produktowend
+              end
+
+     - I teraz w widkou views/categories/show dajmy prawdzwe dane
+                 <h1><%= @category.name  %></h1>
+
+                 <%= render partial: 'products/products', locals: { products: @products } %>
+
+                 <!-- Dodajmy paginacje -->
+                 <%= paginate @products %>
+     - Odswiezamy strone i widzimy ze jest tak jak nalerzy
+     
 
 
 

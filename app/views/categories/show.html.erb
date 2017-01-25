@@ -1,4 +1,4 @@
-<h1>Nazwa kategori</h1>
+<h1><%= @category.name  %></h1>
 
 <%= render partial: 'products/products', locals: { products: @products } %>
 
@@ -8,3 +8,7 @@
      to railsy je znajda bez problemu
      i wtedy wyswietli nam sie oczekiwany rezultat
  -->
+
+
+<!-- Dodajmy paginacje -->
+<%= paginate @products %>

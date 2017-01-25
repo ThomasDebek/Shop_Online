@@ -40,9 +40,9 @@
         <div class="col-md-2">
           <h3>Kategorie</h3>
           <ul class="nav nav-sidebar">
-            <% (1..9).each do |category| %>
+            <% Category.all.each do |category| %>                        <!-- Wyswitlmy teraz prawdziwe kategorie -->
                 <li>
-                  <%= link_to "Kategoria#{category}", category_path(category) %>
+                  <%= link_to category.name, category_path(category) %>  <!-- 1-argumenty to category, a 2gim argumentem bedzie sciezka do category -->
                 </li>
             <% end %>
           </ul>
