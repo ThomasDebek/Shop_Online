@@ -296,6 +296,52 @@
               </div>
 
 
+9.6 Skrypt_generowania_losowych_testowych_produktow
+    **
+    Napiszemy skrypt, ktroy stworzy prawdziwe wpisy do bazy danych - uzywajac fakera do wygenerowania wartosci do naszych pol
+    - i kiedy bedziemy wyswitlac nasze produkty z prawidzwymi danymi to nasz sklep bedzie bardziej znacznie kolorowy niz jest aktualnie szere placehodery
+    - Potencjalnie dobrym miejscem dla wygenerownia takiego skryptu jest miejsce /db/seeds.rb
+    - Do tego pliku dodaje sie zawyczaj dane ktore umozliwiaja uruchomienie aplikacji
+      db/seeds.rb
+
+          ShippingType.create name: "Paczka Pocztowa", cost: 10.0
+          ShippingType.create name: "Kurier", cost: 20.0
+
+
+         8.times do                                                   # W tym bloku losujemy 8 kategori
+           Category.create! name: Faker::Hacker.ingverb.capitalize    # Tu tworzymy nowe kategorie z losowa nazwa wygenerowana przez Fakera
+         end
+
+         category_ids = Category.pluck(:id)                           # Tutaj przechowuje w zmiennej wszystkie numery id tych kategorii,
+                                                                      # metoda pluck  w active record przyjmuje 1argument w postaci nazwy kolumny
+                                                                      # i ta metoda zwraca tablice z wartosciami w tej kolumnie wszystkich wierszy w bazie dannych
+
+         print "Product "
+         200.times do       # nastepnie 200 razy wywolujemy ten blok, i w nim dodajemy produkty
+           product = Product.create! name: "#{Faker::Hacker.verb} #{Faker::Hacker.noun}".capitalize, # dajemy naze
+                                     description: Faker::Hacker.say_something_smart,                 # wywolujemy krotki opis
+                                     long_description: Faker::Lorem.paragraphs(3).join("\n\n"),      # Wywolujemy dlugi opis
+                                     category_id: category_ids.sample,                               # wybieramy losowa kategorie, czyli na tablicy z wszystkimi identyfikatorami kategorii wywolujemy metode sample, ktroy zwraca losowy element z tej tablicy
+                                     price: Faker::Number.decimal(3, 2)                              # generujemy losowa cene
+           product.remote_photo_url = Faker::Avatar.image(                   # Generujemy losowy obrazek produktu
+               product.name.parameterize,
+               "640x480",                  # ma miec rozmiar
+               "jpg",                      # byc w formacie jpg
+               "set#{[1, 2, 3].sample}",   # obrazek ma byc wykorzystany ze wszystkich setow 1-set wyswietla roboty, 2-set twarze robotow, 3-set potworki
+               "bg#{[1, 2].sample}"        # tutaj mowimy z ktorego tla losoego bedziemy korzystac
+           )
+           product.save   # zapisujemy produkt
+           print "."      # kropecza sygnalizuje nam ze cos sie dzieje poniewaz skrytp bedzie dzialal dosc dlugo, ze sie nie zawiesil, nie zapetlil
+         end
+         puts             # i wyswitlamy
+
+    - Tak napisany skrypt mozemy wywolac
+      rake db:seed
+
+
+
+
+
 
 
 
