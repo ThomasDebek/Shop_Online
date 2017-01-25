@@ -272,6 +272,32 @@
 
 
 
+9.5 .Szkic_szczegolow_produktu
+     views/products/show
+     - Zrobimy tak, ze po prawej stronie mamy obrazek,
+       - pomiedzy obrazkiem a paskiem bocznym: nazwe produktu, opis, szczegoly i przycisk
+        
+              <div class="container-fluid">
+                <div class="col-md-5">                                                       <!-- Tutaj takze korzystamy z girda bootstrapowego, bedzie zajmowa 5/12 miejsca na takie rzeczy jak opis, nazwe produtkow, cenne -->
+                  <h1><%= Faker::Hacker.noun %></h1>
+                  <p class="lead"><%= Faker::Hacker.say_something_smart %></p>
+                  <%= simple_format(Faker::Lorem.paragraphs(3).join("\n\n")) %>
+
+                  <p class="lead"><%= number_to_currency(Faker::Number.decimal(2, 2)) %></p>
+                  <p>
+                    <%= link_to "#", class: "btn btn-primary" do %>
+                      <span class="fa fa-shopping-cart">  Dodaj do koszyka </span>
+                    <% end %>
+                  </p>
+                </div>
+                <div class="col-md-7">                                                         <!-- A po prawej stronie mamy 7/12 zajmowanego miejsca, kiedy obrazek bedzie zbyd duzy na obszar jaki mu dano, to obrazek bedzie pomniejszony i dostosowany do danego miejsca  -->
+                  <%= image_tag Faker::Placeholdit.image("640x480", 'jpg', 'cccccc'), class: "img-responsive" %>
+                </div>
+              </div>
+
+
+
+
 
 
 
