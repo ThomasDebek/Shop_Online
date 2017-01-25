@@ -91,10 +91,12 @@
                           version :details do
                             process :resize_to_fit => [640, 480]
                           end
+          - Oraz odznaczamy :
+                          include CarrierWave::MiniMagick                       # Odchaczamy nasz modul, minimagic odpowiada za intergracje z carierrwave
       ** Teraz model z kategoria
          - kategoria posiada wiele produktow i produkty naleza do kategorii polaczmy modele
                   class Category < ActiveRecord::Base
-                    has_many :prodcuts
+                    has_many :products                   # liczba mnoga poniewaz mamy wiele produktow
                     validates :name, presence: true      # zrobmy odrazu walidacje na to pole
                   end
       ** Nastepnie model z produktami
@@ -399,7 +401,27 @@
                  <!-- Dodajmy paginacje -->
                  <%= paginate @products %>
      - Odswiezamy strone i widzimy ze jest tak jak nalerzy
-     
+     **
+     - Gdy przewiniemy strone widzimy paginacje, ktora nie wyglada za ladnie
+     - Pamietamy ze dodajac kaminari do projektu wygenerowalismy takze paginacje i teraz ja usuniemy
+     - usowamy next last oraz first, prev
+
+     views/kaminari/_paginator.html.erb
+                        <%= paginator.render do -%>
+                          <ul class="pagination">
+                            <% each_page do |page| -%>
+                              <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+                                <%= page_tag page %>
+                              <% elsif !page.was_truncated? -%>
+                                <%= gap_tag %>
+                              <% end -%>
+                            <% end -%>
+                          </ul>
+                        <% end -%>
+
+     - i gdy teraz odswizymy mamy ladna paginacjie
+
+
 
 
 
