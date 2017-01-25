@@ -4,7 +4,11 @@ class ProductPhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+   include CarrierWave::MiniMagick                       # Odchaczamy nasz modul, minimagic odpowiada za intergracje z minimagickiem
+                                                         # i to walanie on dokonuje prztwarzania wszystkich obrazkow na miniatury itd.
+                                                         # Jezeli nie zaimplementujemy tego modulu to carrierwave nie bedzie wiedzial w jaki sposob wykonac
+                                                         # metode resize_to_fit
+                                                         # I ten modul wlasnie odpowiada za obsluge obrazkow
 
   # Choose what kind of storage to use for this uploader:
   storage :file

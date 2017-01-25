@@ -66,7 +66,12 @@
                         category:belongs_to   - ostatecznie produkt bedzie nalezal do jakiejs kategorii
    ** Wiemy, ze produkty beda posadaly zdjaca.  Wiec musimy wygenerowac uploader dla CarrierWave czyli plikow ze zdjeciami oraz ich obrubke, np. generowanie miniatur o odpowiednim rozmiarze tak aby pasowaly do desingu
       - rails generate uploader product_photo
-   * rake db:create    - poniewaz mamy mysql
+          app/uploaders/product_photo_uploader
+                  include CarrierWave::MiniMagick                       # Odchaczamy nasz modul, minimagic odpowiada za intergracje z carierrwave
+                                                                        # i to walanie on dokonuje prztwarzania wszystkich obrazkow na miniatury itd.
+                                                                        # Jezeli nie zaimplementujemy tego modulu to carrierwave nie bedzie wiedzial w jaki sposob wykonac
+                                                                        # metode resize_to_fit * rake db:create    - poniewaz mamy mysql
+                                                                        # I ten modul wlasnie odpowiada za obsluge obrazkow
    * rake db:migrate
 
    9.3 Skonfigurowanie_adresow_url_oraz_modeli
@@ -337,6 +342,14 @@
 
     - Tak napisany skrypt mozemy wywolac
       rake db:seed
+    - Musimy teraz usunac bd i stworzyc na nowo, wprowadzic wszystkie dane:
+       rake db:drop     - usowa bd
+       rake db:create   - tworzy bd
+       rake db:migrate  - odpala migracje
+       rake db:seed     - odpala skrypt
+
+       rake db:drop db:create db:migrate db:seed        ->  to wszsytko mozemy wykonac za pomoca jednego polecenia
+       widzimy ze wszystko dzila, i nasz skrypt wyswietla kropeczki (bedzie ich 200)
 
 
 
