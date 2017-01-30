@@ -7,10 +7,16 @@ class Product < ActiveRecord::Base
   validates :category, presence: true                    # deklarujemy ze chcemy ja zwalidowac i przypozadkowac do kategorii
 
 
-  mount_uploader :product_photo, ProductPhotoUploader
+  mount_uploader :photo, ProductPhotoUploader
       # Musimy takze zamontowac nasz uploader pochodzacy z gemu CarrierWave
       # Jako argument przkazujemy nazwe photo, ktora bedzie przechowywala sciezke do pliku
       # Oraz nazwe klasy, ktora obsluguje dane uploadsy
+
+  def to_param
+    "#{id}-#{name}".parameterize
+  end
+
+
 end
 
 

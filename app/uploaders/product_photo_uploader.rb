@@ -4,11 +4,7 @@ class ProductPhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick                       # Odchaczamy nasz modul, minimagic odpowiada za intergracje z minimagickiem
-                                                         # i to walanie on dokonuje prztwarzania wszystkich obrazkow na miniatury itd.
-                                                         # Jezeli nie zaimplementujemy tego modulu to carrierwave nie bedzie wiedzial w jaki sposob wykonac
-                                                         # metode resize_to_fit
-                                                         # I ten modul wlasnie odpowiada za obsluge obrazkow
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -18,6 +14,7 @@ class ProductPhotoUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -36,13 +33,13 @@ class ProductPhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-   version :thumb do
-     process :resize_to_fit => [120, 120]
-   end
+  version :thumb do
+    process :resize_to_fit => [120, 120]
+  end
 
-   version :details do
-     process :resize_to_fit => [640, 480]
-   end
+  version :details do
+    process :resize_to_fit => [640, 480]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
