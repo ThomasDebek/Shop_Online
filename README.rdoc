@@ -421,6 +421,46 @@
 
      - i gdy teraz odswizymy mamy ladna paginacjie
 
+     **
+     Teraz czas na zaimplementowanie listy
+        views/categories/show.html.erb
+              <h1><%= @category.name  %></h1>
+                <%= render partial: 'products/products', locals: { products: @products } %>
+                   <%= paginate @products %>
+
+     **
+     Teraz zajmijmy sie naszym parszalem   views/products/_products.html.erb
+     - tak aby nie pobieraly danych w locie tylko pobieraly z naszego produktu
+
+                   <% products.each_slice(3) do |slice| %>                                                       <!-- Bedziemy wyswietlac 9 elementow, wiec od 1 do 9 sobie wyliczymy i uzyjemy helpera  each_slice ktory nam podzieli te tablice na iles tablic, ktora kazda z nich bedzie zawierala po trzy elementy -->
+                       <div class="row">                                                                        <!-- Produkty bedziemy wyswietlac w 3 kolumnach wiec uzyjemy systemu gird z bootstrapa -->
+                         <% slice.each do |product| %>                                                          <!-- Kazda z tych trujek jest tablica po ktorej bedzimey literowac -->
+                             <div class="col-md-4">                                                             <!-- Skoro chcemy 3 produkty w kazdym wierszu, i skoro mamy 12 kratek w naszym girdzie, to kazdy produkt zajmnie 1/3 z tych 12 czyli 4kratki   -->
+                               <div class="thumbnail">
+                                                                                      <!-- Z kolieji ta klasa jest klasa ktora reprezentuje miniaturke -->
+                                 <%= link_to product_path(product) do %>
+                                    <%= image_tag product.photo.url  %>
+                                 <% end %>
+
+
+                                 <div class="caption">
+                                   <h3><%= link_to Faker::Hacker.noun.titleize, product_path(1) %></h3>                  <!-- Tu mamy nazwe produkut z uzyciem helpera Faker::Hacker.noun -->
+                                   <p><%= simple_format(truncate(Faker::Hacker.say_something_smart, length: 90)) %></p>  <!--  Tutaj opis danego produktu, czyli jakies wygenerowane zdanie przez fakera -->
+                                   <p class="lead"><%= number_to_currency Faker::Number.decimal(2, 2) %></p>             <!--  I tutaj cena danego produktu-->
+                                   <p>
+                                     <%= link_to "#", class: "btn btn-primary" do %>
+                                         <span class="fa fa-shopping-cart"></span> Dodaj do koszyka             <!-- I tu mamy bardzo ciekawa klase bootstrapa fa dlatego ze mamy strone http://fontawesome.io  czyli ikonki, fa-to pierwsza klasa ze to fontawsome i druga klasa to opis ikonik-->
+                                     <% end %>
+                                   </p>
+                                 </div>
+                               </div>
+                             </div>
+                         <% end %>
+                       </div>
+                   <% end %>
+
+
+
 
 
 
