@@ -516,6 +516,109 @@
 
 
 
+           UZUPELNIJMY DALSZA CZESC NASZEJ API
+           - W parszalu products/_products.html.erb    wstawmy PRAWDZIWE DANE
+                    <%= @products.each_slice(3) do |slice| %>                                                    <!-- Bedziemy wyswietlac 9 elementow, wiec od 1 do 9 sobie wyliczymy i uzyjemy helpera  each_slice ktory nam podzieli te tablice na iles tablic, ktora kazda z nich bedzie zawierala po trzy elementy -->
+                        <div class="row">                                                                        <!-- Produkty bedziemy wyswietlac w 3 kolumnach wiec uzyjemy systemu gird z bootstrapa -->
+                          <% slice.each do |product| %>                                                          <!-- Kazda z tych trujek jest tablica po ktorej bedzimey literowac -->
+                              <div class="col-md-4">                                                             <!-- Skoro chcemy 3 produkty w kazdym wierszu, i skoro mamy 12 kratek w naszym girdzie, to kazdy produkt zajmnie 1/3 z tych 12 czyli 4kratki   -->
+                                <div class="thumbnail">                                                          <!-- Z kolieji ta klasa jest klasa ktora reprezentuje miniaturke -->
+                                  <%= link_to product_path(product) do %>
+                                      <%= image_tag product.photo.url(:thumb).inspect  %>
+                                  <% end %>
+                                  <div class="caption">
+                                    <h3><%= link_to product.name, product %></h3>                           <!-- Podaje prawdziwa nazwe produktu -->
+                                    <p><%= simple_format(truncate(product.description, length: 90)) %></p>  <!--  Formatuje opis produktu -->
+                                    <p class="lead"><%= number_to_currency product.price %></p>             <!--  I tutaj cena danego produktu -->
+                                    <p>
+                                      <%= link_to "#", class: "btn btn-primary" do %>
+                                          <span class="fa fa-shopping-cart"></span> Dodaj do koszyka             <!-- I tu mamy bardzo ciekawa klase bootstrapa fa dlatego ze mamy strone http://fontawesome.io  czyli ikonki, fa-to pierwsza klasa ze to fontawsome i druga klasa to opis ikonik-->
+                                      <% end %>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                          <% end %>
+                        </div>
+                    <% end %>
+
+           - TERAZ CZAS NA STRONE GLOWNA
+           - Najpierw musze wejsc do naszego kontrollera i ustawic co ma sie w nim wyswietlac w akcji index i show
+                    def index
+                        @products = Product.order(created_at: :desc).limit(9)      # Tutaj napierw musze znalezc produkt i wyswietlic malejaco i wybieramy 9 z nich
+                    end
+
+                    def show
+                      @product = Product.find(params[:id])         # Tu znajdujmey losowy produkt i go wyswietlimy
+                      @category = @product.category
+                    end
+
+
+           - gdy wejde na  strone glowna i odswieze, to widze ze to sa te same prokuty czyli z BD
+           - Zacznijmy od akcji index
+
+                      views/products/index.html.erb
+                           <h1>Najnowsze produkty</h1>
+                           <%= render partial: 'products', locals: { products: @products } %>      -> zmienimy nasza losowa zmienna i ustawimy na nasz @products
+           - i gdy teraz wejdziemy na strone glówna bedziemy widzies 9 najnowszych produktow
+
+
+           ** TERAZ WYSWIETLE SZCZEGOLY DANEGO PRODUKTU
+             - zrobimy tak ze strona ze szczegolami bedzie wyswietlac prawdziwe dane z BD
+             - musze wyedytowac plik
+                          views/products/show.html.erb
+                              **** i ten kod generujacy dane w locie
+                                          <div class="container-fluid">
+                                            <div class="col-md-5">                                                       <!-- Tutaj takze korzystamy z girda bootstrapowego, bedzie zajmowa 5/12 miejsca na takie rzeczy jak opis, nazwe produtkow, cenne -->
+                                              <h1><%= Faker::Hacker.noun %></h1>
+                                              <p class="lead"><%= Faker::Hacker.say_something_smart %></p>
+                                              <%= simple_format(Faker::Lorem.paragraphs(3).join("\n\n")) %>
+
+                                              <p class="lead"><%= number_to_currency(Faker::Number.decimal(2, 2)) %></p>
+                                              <p>
+                                                <%= link_to "#", class: "btn btn-primary" do %>
+                                                  <span class="fa fa-shopping-cart">  Dodaj do koszyka </span>
+                                                <% end %>
+                                              </p>
+                                            </div>
+                                            <div class="col-md-7">                                                         <!-- A po prawej stronie mamy 7/12 zajmowanego miejsca, kiedy obrazek bedzie zbyd duzy na obszar jaki mu dano, to obrazek bedzie pomniejszony i dostosowany do danego miejsca  -->
+                                              <%= image_tag Faker::Placeholdit.image("640x480", 'jpg', 'cccccc'), class: "img-responsive" %>
+                                            </div>
+                                          </div>
+                              **** ZASTAPIE KODEM POBIERAJACYM DANE Z BD
+
+                                       <div class="container-fluid">
+                                         <div class="col-md-5">                                                       <!-- Tutaj takze korzystamy z girda bootstrapowego, bedzie zajmowa 5/12 miejsca na takie rzeczy jak opis, nazwe produtkow, cenne -->
+                                           <h1><%= @product.name %></h1>
+                                           <p class="lead"><%= @product.description %></p>
+                                           <%= simple_format(@product.long_description) %>
+
+                                           <p class="lead"><%= number_to_currency(@product.price) %></p>
+                                           <p>
+                                             <%= link_to "#", class: "btn btn-primary" do %>
+                                               <span class="fa fa-shopping-cart">  Dodaj do koszyka </span>
+                                             <% end %>
+                                           </p>
+                                         </div>
+                                         <div class="col-md-7">
+                                           <%= image_tag @product.photo.url(:details).inspect, class: "img-responsive" %>     --> DALEM INSPECTA NARAZIE NIE MA OBRAZKA
+                                         </div>
+                                       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
