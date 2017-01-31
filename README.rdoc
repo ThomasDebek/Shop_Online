@@ -606,6 +606,39 @@
                                        </div>
 
 
+7.Usprawnienia_nawigacji_Optymalizacja_SEO
+   - Tutaj zajmniemy sie nawigacja
+   - sprawie ze aktulne kategorie beda sie ladnie podswietlac
+       * aktualnie w bootsrapie nie ma ladnego podswietlania naszego sidebaru(paska bocznego) dlatego tez tym sie zajmniemy
+         - dodamy wlasna regule css
+         - app/assets/stylesheets/application.css
+              /* Regula podswietlajaca nasz SIDEBAR - PASEK BOCZNY */
+              .nav-sidebar > .active > a,
+              .nav-sidebar > .active > a:hover,
+              .nav-sidebar > .active > a:focus {
+                  color: #fff;
+                  background-color: #428bca;
+              }
+
+   - Teraz musimy przejsc do naszego pliku z layoutsem
+
+             <% Category.all.each do |category| %>                                        <!-- Wyswitlmy teraz prawdziwe kategorie -->
+                             <li <% if @category == category %>class="active"<% end %>>   <!-- dodamy klase active, ktora podswietla nam nazwe, czyli jezeli dana kategoria jest aktywna,  to podswietlamy tylko ta kategorie -->
+                               <%= link_to category.name, category_path(category) %>      <!-- 1-argumenty to category, a 2gim argumentem bedzie sciezka do category -->
+                             </li>
+             <% end %>
+       - i gdy teraz odsiezymy strone to wszystko dziala
+       - ale gdy wejdziemy w szeczoly produktu to podswietlenie znika
+       - musimy dodac w kontrolerze products zmienna  @category poniewz porównujemy ja z category <li <% if @category == category %>class="active"<% end %>>
+              def show
+                  @product = Product.find(params[:id])
+                  @category = @product.category           # Zmienna pomocna w podswietlaniu sidebara i uzyta w layotsie
+              end
+
+
+
+
+
 
 
 

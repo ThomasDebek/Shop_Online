@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+
+/* Regula podswietlajaca nasz SIDEBAR - PASEK BOCZNY */
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}

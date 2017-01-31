@@ -41,7 +41,7 @@
           <h3>Kategorie</h3>
           <ul class="nav nav-sidebar">
             <% Category.all.each do |category| %>                        <!-- Wyswitlmy teraz prawdziwe kategorie -->
-                <li>
+                <li <% if @category == category %>class="active"<% end %>>   <!-- dodamy klase active, ktora podswietla nam nazwe, czyli jezeli dana kategoria jest aktywna to podswietlamy tylko ta kategorie -->
                   <%= link_to category.name, category_path(category) %>  <!-- 1-argumenty to category, a 2gim argumentem bedzie sciezka do category -->
                 </li>
             <% end %>

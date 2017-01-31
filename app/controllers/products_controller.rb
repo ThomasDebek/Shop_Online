@@ -5,6 +5,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @category = @product.category
+    @category = @product.category           # Zmienna pomocna w podswietlaniu sidebara i uzyta w layotsie
   end
 end
