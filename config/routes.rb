@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   #get 'products/index'
   #get 'products/show'
 
-  resources :products, only: [:show, :index], path: "produkt"     # nasz resources products bedzie posiadal tylko dwie akcje
-  resources :categories, only: [:show] , path: "kategoria"          #dodatkowo zadeklarujemy kategorie
+  resources :products, only: [:show, :index], path: "produkt"       # nasz resources products bedzie posiadal tylko dwie akcje   SPOLSZCZMY NASZA NAZWE W PASKU
+  resources :categories, only: [:show] , path: "kategoria"          # dodatkowo zadeklarujemy kategorie  I TU TAKZE SPOLSZCZMY
   root to: 'products#index'                      #nasz glowny adres
 
 
