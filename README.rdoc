@@ -689,7 +689,45 @@
      * Na poczatek wygenerujemy kontrollery
        - dla produktów odrazu podamy liste akcji dla ktorych chcemy miec wygenerowane widoki
 
-     rails g controller admin/products index new edit
+       rails g controller admin/products index new edit
+       rails g controller admin/categories index new edit
+
+
+     * Wchodząc w routsy widzimy ze railsy wygenerowaly nam odpowiednie sciezki, usunmy je i zmiennmy je na nasze
+                   namespace :admin do
+                     resources :products
+                     resources :categories
+                   end
+     - mozemy poderzec sobie w rake routes
+
+     ** Dobrze jest miec OSOBNY LAYOUTS dla panelu admina
+       - dodatkowo wszystkie kontrollery w module admina zrobimy zachaslowane i tylko uzytkownik ktory zna haslo bedzie mógł dodawac usowac itd.
+
+     **
+     ****
+       -> Dobra praktyka jest wygenerowanie kontrollera bazowego
+          i z tego kontrollera beda dziedziczyc klasy kontrollerow dotyczacych admina produktow i kategori
+          wygenerujemy go bez zadnych widokow, z niego bedziemy tylko dziedziczyc
+
+          rails g controller admin/base
+
+       -> Uzupelnijmy nasz kontroller bazowy
+
+
+                  class Admin::BaseController < ApplicationController
+                    layout 'admin'                                                                  # Wybieram layouts
+                    before_action :authenticate                                                     # Uwiezytelniam uzytkownika, czyli nikt nie ma wstepu do panelu admina, chyba ze zna login i haslo
+
+                    def authenticate                                                                # I tu jest nasze uwiezytelnienie uzytkownikow
+                      authenticate_or_request_with_http_basic 'Podaj hasło!' do |name, password|
+                        name == 'username' && password == 'secret'
+                      end
+                    end
+                  end
+
+      *             
+
+
 
 
 

@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+
+  namespace :admin do
+    resources :products
+    resources :categories
+  end
+
+
   # Te adresy takze usowamy i zastapimy je innym rozwiazaniem
   #get 'static/terms'
   #get 'static/privacy'
