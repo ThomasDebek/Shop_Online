@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root to:  'products#index'       # i taki zapis spowoduje ze wejscie do akcji /admin przekieruje nas na root glowny-strone glowna
     resources :products
     resources :categories
   end
+  # gdy wpiszemy adres /admin/products  - to wejdziemy na products
+  # a co jezeli wpiszemy /admin - to tu takze powinien nas skierowac w odpowiednia akcje
+  # wiec dajemy root to: 'products#index'
 
 
   # Te adresy takze usowamy i zastapimy je innym rozwiazaniem

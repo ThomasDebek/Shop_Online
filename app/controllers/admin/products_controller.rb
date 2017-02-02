@@ -1,7 +1,7 @@
 class Admin::ProductsController < Admin::BaseController
 
   def index
-    @products = @q.result(distinct: true).page(params[:page]).per(30)         # Zwyczajne pobranie wszystkich produktow i dodajemy paginacje przez kaminari
+    @products = Product.page(params[:page]).per(30)         # Zwyczajne pobranie wszystkich produktow i dodajemy paginacje przez kaminari
   end
 
   def new
