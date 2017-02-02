@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShopOnline</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= admin_root_path %>">ShopOnline::Admin</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li <% if params[:controller] == "admin/products" %>class="active"<% end %>><%= link_to "Produkty", admin_products_path %></li>
+      <li <% if params[:controller] == "admin/categories" %>class="active"<% end %>><%= link_to "Kategorie", admin_categories_path %></li>
+      <li <% if params[:controller] == "admin/orders" %>class="active"<% end %>><%= link_to "Zamówienia", admin_orders_path %></li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <%= bootstrap_flash %>       <!-- Mamy tu helper od bootsrapa -->
+  <%= yield %>
+</div>
+</body>
+</html>
