@@ -606,7 +606,7 @@
                                        </div>
 
 
-7.Usprawnienia_nawigacji_Optymalizacja_SEO
+9.8 Usprawnienia_nawigacji_Optymalizacja_SEO
    - Tutaj zajmniemy sie nawigacja
    - sprawie ze aktulne kategorie beda sie ladnie podswietlac
        * aktualnie w bootsrapie nie ma ladnego podswietlania naszego sidebaru(paska bocznego) dlatego tez tym sie zajmniemy
@@ -677,6 +677,19 @@
       - Dzieki tej prostej sztutce strona stala sie przyjazna dla SEO
 
 
+
+9.9 Panel Admina
+    ** Panel Admina bedzie CRUDEM  do zarzadzania modelami ( w tym przypadku dwoma, produktami i kategoriami)
+     - Juz posiadamy kontroller z ktorego korzysta uzytkownik do przeglądania produktów
+     - Wiec nie mozemy uzyc tego kontrollera do panelu admina
+     - Ruby posiada tzw. przestrzen nazw
+     - POJECIE PRZESTERZ NAZW   - czyli zamknosc klase w przestrzeni nazw, czyli w module
+     - Nawet generatory rozumieja pojecie przestrzeni nazw
+
+     * Na poczatek wygenerujemy kontrollery
+       - dla produktów odrazu podamy liste akcji dla ktorych chcemy miec wygenerowane widoki
+
+     rails g controller admin/products index new edit
 
 
 
