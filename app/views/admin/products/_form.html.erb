@@ -1,0 +1,19 @@
+<%= simple_form_for [:admin, @product] do |f| %>    <!-- Uzywamy tu zwyklego simple_forma, ktory jest zajebisty -->
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :long_description %>
+    <%= f.input :price %>
+    <%= f.association :category %>
+    <%= f.input :photo %>
+    <%= f.submit %>
+<% end %>
+
+
+<!-- Bardzo ciekawa zecza jest to, ze simple_form_for
+     aby prowadzil nas do panelu admina a nie do zwyczajnego kontrollera to:
+     simple_form_for - wywolujemy dla tablicy
+     pierwszym elementem tablicy jest symbol admin,
+      - czyli symbolizuje nam namspaca czyli przestrzen nazw o nazwie admin
+     a drugim elementem jest konkretny obiekt z produktem
+     dzieki temu simple_form bedzie wskazywal na adminowy kontroller do obslugi danych z tego formularza
+     -->

@@ -888,6 +888,72 @@
 
 
 
+     ** Widoki admina - to kolejny etap pieknej zabawy z api - fac, this is very nice -zajebiste
+     - views/admin/products/index.html.erb
+
+
+                  <h1>Produkty</h1>
+
+                  <%= link_to new_admin_product_path, class: "btn btn-success" do %>
+                      <span class="fa fa-plus"></span> Dodaj nowy produkt               <!-- standardowy link prowadzacy do nowego produktu -->
+                  <% end %>
+
+                  <table class="table table-striped">       <!-- Tabelka z lista produktow -->
+                    <thead>
+                    <tr>
+                      <th>Nazwa</th>
+                      <th>Cena</th>
+                      <th>Kategoria</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @products.each do |product| %>
+                        <tr>
+                          <td><%= product.name %></td>                       <!-- Oczywiscie nazwe -->
+                          <td><%= number_to_currency product.price %></td>   <!-- Cene -->
+                          <td><%= product.category.name %></td>              <!-- Nazwe kategorii -->
+                          <td>
+                            <%= link_to "Edycja", edit_admin_product_path(product), class: "btn btn-default btn-xs" %>     <!-- link do edycji produktu -->
+                          </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+
+                  <%= paginate @products %>     <!-- Oczywiscie paginacje produktu -->
+
+
+
+
+        ** Parszala z formularzem:
+         - views/admin/products/_form.html.erb
+
+                       <%= simple_form_for [:admin, @product] do |f| %>    <!-- Uzywamy tu zwyklego simple_forma, ktory jest zajebisty -->
+                           <%= f.input :name %>
+                           <%= f.input :description %>
+                           <%= f.input :long_description %>
+                           <%= f.input :price %>
+                           <%= f.association :category %>
+                           <%= f.input :photo %>
+                           <%= f.submit %>
+                       <% end %>
+
+
+                       <!-- Bardzo ciekawa zecza jest to, ze simple_form_for
+                            aby prowadzil nas do panelu admina a nie do zwyczajnego kontrollera to:
+                            simple_form_for - wywolujemy dla tablicy
+                            pierwszym elementem tablicy jest symbol admin,
+                             - czyli symbolizuje nam namspaca czyli przestrzen nazw o nazwie admin
+                            a drugim elementem jest konkretny obiekt z produktem
+                            dzieki temu simple_form bedzie wskazywal na adminowy kontroller do obslugi danych z tego formularza
+                            -->
+
+
+
+
+
+
 
 
 
