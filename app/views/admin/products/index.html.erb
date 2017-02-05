@@ -4,11 +4,29 @@
     <span class="fa fa-plus"></span> Dodaj nowy produkt               <!-- standardowy link prowadzacy do nowego produktu -->
 <% end %>
 
+
+<div class="search-form">
+  <%= search_form_for [:admin, @q] do |f| %>                                                           <!-- Robimy search_form_for, pniewaz checmy zeby formularz wyszukiwania kierowal do panelu admina i podajemy w parametrach symbol admin i nasza zmienna q  -->
+      <%= f.text_field :name_or_description_or_long_description_cont, placeholder: "Szukaj tekstu" %>  <!-- I nasz formularz wyszukiwania bedzie zaweiral dawa pola,
+                                                                                                            i 1-sze nasze pole ma smieszna nazwe i ransack ja skanuje
+                                                                                                             i prubuje odkryc jaka kwerende mielismy na mysli
+                                                                                                            Czyli wpisanie jakiegos slowa sprawi ze Ransack bedzie szukal w kolumnach
+                                                                                                             description oraz long_description tego slowa i jezeli ktores z tych pol zawiera
+                                                                                                             to slowo ktore podamy w trybie wyszukiwania to produkt zostanie odnaleziony i
+                                                                                                             zostanie wyswietlony na liscie
+                                                                                                             -->
+      <%= f.text_field :price_gt, placeholder: "Cena >" %>              <!-- Naszym drugim polem jest price_qt i wszystkie produkty ktorych cena jest wieksza od
+                                                                         od wartosci ktora jest podana w tym polu, zostana znalezione i wyswietlone w liscie wyszukiwania -->
+      <%= f.submit "Szukaj" %>
+  <% end %>
+</div>
+
+
 <table class="table table-striped">       <!-- Tabelka z lista produktow -->
   <thead>
   <tr>
-    <th>Nazwa</th>
-    <th>Cena</th>
+    <th><%= sort_link(@q, :name, "Nazwa") %></th>
+    <th><%= sort_link(@q, :price, "Cena") %></th>
     <th>Kategoria</th>
     <th></th>
   </tr>
