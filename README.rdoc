@@ -973,6 +973,61 @@
         - czyli panel admina
 
 
+9.10 Ransack_Formularz_Przeszukiwania_Produktow
+    * Zbudujemy prosty formularz do przeszukiwania produktow w panelu admina
+    * Uzyjemy gema ransack   - ktory juz mamy dodany do panelu admina, mamy juz go dadanego do gemfilla
+      - installacja gema jest standardowo bardzo prosta, wystarczy go dodac do gemfila i dac bundla
+             gem 'ransack'
+      - jego uzycie jest takze bardzo proste
+      - Na Modelu wywolujemy metode ranstact i jako argument podajemy metode params od q  (params[:q])
+             - Czyli mozemy wnioskowac, ze to w paramsach bedą znajdowac sie różne kryteria wyszukiwania
+               i Ransac na podstawie tych kryteriów z paramsów - zbuduje odpowiednie kwerendy
+               i nam zwróci odpowiednie rekordy wywolujac metode result na obiekcie q
+                     :przykład z githuba   ->https://github.com/activerecord-hackery/ransack
+
+                            @q = Person.ransack(params[:q])
+                            @people = @q.result(distinct: true)
+             - Ransacka, można dowolnie łączyc z paginacją itd.
+
+     * Ransack udostepnia nam takze formBildera o nazwie:    search_form_for
+        - w którym formularz budujemy dla obiektu q
+                    ->Przyklad z githuba ransacka
+                         <%= search_form_for @q do |f| %>
+
+                           # Search if the name field contains...
+                           <%= f.label :name_cont %>
+                           <%= f.search_field :name_cont %>
+
+                           # Search if an associated articles.title starts with...
+                           <%= f.label :articles_title_start %>
+                           <%= f.search_field :articles_title_start %>
+
+                           # Attributes may be chained. Search multiple attributes for one value...
+                           <%= f.label :name_or_description_or_email_or_articles_title_cont %>
+                           <%= f.search_field :name_or_description_or_email_or_articles_title_cont %>
+
+                           <%= f.submit %>
+                         <% end %>
+        - Budownaie formularzy w ransacku polega na tym ze budujemy pola o odpowiedniej nazwie i ta nazwa juz zawiera w sobie kwerende
+           -> Przykladowo:
+              - Jeżeli nasz model Person zawiera pole name
+                to jezeli w formularzu wyszukiwania zrobimy name_cont
+                to bedzie to skrót od name_conteins
+                   - czyli name zawiera string który podamy w tym formularzu
+                            # Search if the name field contains...
+                             <%= f.label :name_cont %>
+                             <%= f.search_field :name_cont %>
+                   - albo, ze tytół artykulu zaczyna sie od stringa który podamy w tym polu
+                            # Search if an associated articles.title starts with...
+                              <%= f.label :articles_title_start %>
+                              <%= f.search_field :articles_title_start %>
+              - Wiec Ranstack udostepnia bardzo prosty sposób oparty na konwencjach na budowe formularzy wyszukiwania
+
+
+
+       * Teraz taki formularz wyszukiwania zbudujemy dla naszego panelu admina
+              
+
 
 
 
