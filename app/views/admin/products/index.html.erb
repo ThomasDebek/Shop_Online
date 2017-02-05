@@ -25,8 +25,11 @@
 <table class="table table-striped">       <!-- Tabelka z lista produktow -->
   <thead>
   <tr>
-    <th><%= sort_link(@q, :name, "Nazwa") %></th>
-    <th><%= sort_link(@q, :price, "Cena") %></th>
+    <th><%= sort_link(@q, :name, "Nazwa") %></th>    <!-- Posortujmy nasze produkty za pomoca helpera Ranstacka sort_link,
+                                                          pierwszym argumentem jest nasza zmienna q, a drugim argumentem jest nazwa pola
+                                                           po ktorym bedziemy sortowac(w tym przypadku jest to name)
+                                                           i trzecim argumenem ma byc tekst ktory jest w linku czyli nazwa-->
+    <th><%= sort_link(@q, :price, "Cena") %></th>    <!-- W tym przypadku podobnie -->
     <th>Kategoria</th>
     <th></th>
   </tr>

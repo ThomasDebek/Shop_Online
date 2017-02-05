@@ -1062,6 +1062,22 @@
          - i teraz wszystkie ktore maja w nazwie np. system i tez wieksze niz 900
          - zauwazmy ze kryteria sie lacza
 
+      ** Chcemy takze zeby nasz Ransack posortowal nam np jak kliknimy nazwie czy cene - klikajac naglówek
+         - To bardzo proste
+         - Ransack oferuje helpera o nazwie sort_link
+
+                    <tr>
+                       <th><%= sort_link(@q, :name, "Nazwa") %></th>    <!-- Posortujmy nasze produkty za pomoca helpera Ranstacka sort_link,
+                                                                             pierwszym argumentem jest nasza zmienna q, a drugim argumentem jest nazwa pola
+                                                                              po ktorym bedziemy sortowac(w tym przypadku jest to name)
+                                                                              i trzecim argumenem ma byc tekst ktory jest w linku czyli nazwa-->
+                       <th><%= sort_link(@q, :price, "Cena") %></th>    <!-- W tym przypadku podobnie -->
+                       <th>Kategoria</th>
+                       <th></th>
+                     </tr>
+
+        - I teraz jak odswiezymy strone to widzimy, ze nazwa jak i cena - sa linkami i jak je klikniemy
+          dostajemy oczekiwany winik
 
 
 
