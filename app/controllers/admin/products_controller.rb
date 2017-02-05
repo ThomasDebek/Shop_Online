@@ -1,7 +1,10 @@
 class Admin::ProductsController < Admin::BaseController
 
   def index
-    @products = Product.page(params[:page]).per(30)         # Zwyczajne pobranie wszystkich produktow i dodajemy paginacje przez kaminari
+    @q = Product.ransack(params[:q])                                         # - stworzmy nasza zmienna q
+    @products = @q.result(distinct: true).page(params[:page]).per(30)        #  - a nastepnie do products przypiszmy nasze q i wywolanie metody result
+                                                                             # i chcemy unikalne rekordy tak zeby sie nie powtarzaly metoda: distinct: true
+                                                                             # Zwyczajne pobranie wszystkich produktow i dodajemy paginacje przez kaminari
   end
 
   def new

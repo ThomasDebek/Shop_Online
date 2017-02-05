@@ -1026,7 +1026,15 @@
 
 
        * Teraz taki formularz wyszukiwania zbudujemy dla naszego panelu admina
-              
+       * Wejdzmy teraz do panelu admina    http://localhost:3000/admin        username secret
+       * Widzimy nasz standardowy panel
+
+
+       ** Zacznijmy od kontrollera admina i zrobmy tak jak jest w dokumentacji
+
+
+
+
 
 
 
