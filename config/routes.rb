@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
 
 
+  get 'cart/show'
+
+  get 'cart/edit'
+
+  get 'cart/confirmation'
+
   namespace :admin do
     root to:  'products#index'       # i taki zapis spowoduje ze wejscie do akcji /admin przekieruje nas na root glowny-strone glowna
     resources :products

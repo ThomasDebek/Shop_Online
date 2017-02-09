@@ -1,0 +1,1318 @@
+Last login: Thu Feb  9 16:30:49 on ttys001
+MacBook-Pro-Tomasz:~ Tomasz$ ls
+Applications		Library			Różności
+Applicationss_Rails	Movies			pub
+Desktop			Music			pub.pub
+Documents		Pictures
+Downloads		Public
+MacBook-Pro-Tomasz:~ Tomasz$ cd Applicationss_Rails/
+MacBook-Pro-Tomasz:Applicationss_Rails Tomasz$ cd Videopoint/
+MacBook-Pro-Tomasz:Videopoint Tomasz$ cd Projekty/
+MacBook-Pro-Tomasz:Projekty Tomasz$ cd Shop_Online/
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ mine .
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:migrate
+== 20170206195556 CreateAddresses: migrating ==================================
+-- create_table(:addresses)
+rake aborted!
+StandardError: An error has occurred, all later migrations canceled:
+
+Index name 'index_addresses_on_order_id' on table 'addresses' already exists
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:939:in `add_index_options'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:52:in `index_in_create'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `block in visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `map'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_creation.rb:14:in `accept'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:208:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:468:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:665:in `block in method_missing'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `block in say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:654:in `method_missing'
+/Users/Tomasz/Applicationss_Rails/Videopoint/Projekty/Shop_Online/db/migrate/20170206195556_create_addresses.rb:3:in `change'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:608:in `exec_migration'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:592:in `block (2 levels) in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:591:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:292:in `with_connection'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:590:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:768:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:998:in `block in execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:1046:in `ddl_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:997:in `execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:959:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:823:in `up'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:801:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:137:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/railties/databases.rake:44:in `block (2 levels) in <top (required)>'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+ArgumentError: Index name 'index_addresses_on_order_id' on table 'addresses' already exists
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:939:in `add_index_options'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:52:in `index_in_create'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `block in visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `map'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_creation.rb:14:in `accept'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:208:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:468:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:665:in `block in method_missing'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `block in say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:654:in `method_missing'
+/Users/Tomasz/Applicationss_Rails/Videopoint/Projekty/Shop_Online/db/migrate/20170206195556_create_addresses.rb:3:in `change'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:608:in `exec_migration'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:592:in `block (2 levels) in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:591:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:292:in `with_connection'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:590:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:768:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:998:in `block in execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:1046:in `ddl_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:997:in `execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:959:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:823:in `up'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:801:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:137:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/railties/databases.rake:44:in `block (2 levels) in <top (required)>'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:migrate
+== 20170206195556 CreateAddresses: migrating ==================================
+-- create_table(:addresses)
+rake aborted!
+StandardError: An error has occurred, all later migrations canceled:
+
+Index name 'index_addresses_on_order_id' on table 'addresses' already exists
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:939:in `add_index_options'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:52:in `index_in_create'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `block in visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `map'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_creation.rb:14:in `accept'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:208:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:468:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:665:in `block in method_missing'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `block in say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:654:in `method_missing'
+/Users/Tomasz/Applicationss_Rails/Videopoint/Projekty/Shop_Online/db/migrate/20170206195556_create_addresses.rb:3:in `change'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:608:in `exec_migration'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:592:in `block (2 levels) in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:591:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:292:in `with_connection'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:590:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:768:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:998:in `block in execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:1046:in `ddl_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:997:in `execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:959:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:823:in `up'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:801:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:137:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/railties/databases.rake:44:in `block (2 levels) in <top (required)>'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+ArgumentError: Index name 'index_addresses_on_order_id' on table 'addresses' already exists
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:939:in `add_index_options'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:52:in `index_in_create'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `block in visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `map'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:25:in `visit_TableDefinition'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_creation.rb:14:in `accept'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/schema_statements.rb:208:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract_mysql_adapter.rb:468:in `create_table'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:665:in `block in method_missing'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `block in say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:634:in `say_with_time'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:654:in `method_missing'
+/Users/Tomasz/Applicationss_Rails/Videopoint/Projekty/Shop_Online/db/migrate/20170206195556_create_addresses.rb:3:in `change'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:608:in `exec_migration'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:592:in `block (2 levels) in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:591:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:292:in `with_connection'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:590:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:768:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:998:in `block in execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:1046:in `ddl_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:997:in `execute_migration_in_transaction'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:959:in `block in migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `each'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:955:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:823:in `up'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/migration.rb:801:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:137:in `migrate'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/activerecord-4.2.5.1/lib/active_record/railties/databases.rake:44:in `block (2 levels) in <top (required)>'
+/Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:drop
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:create
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:setup
+Shop_Online_development already exists
+Shop_Online_test already exists
+-- create_table("addresses", {:force=>:cascade})
+   -> 0.0249s
+-- add_index("addresses", ["order_id"], {:name=>"index_addresses_on_order_id", :using=>:btree})
+   -> 0.0178s
+-- create_table("categories", {:force=>:cascade})
+   -> 0.0120s
+-- create_table("orders", {:force=>:cascade})
+   -> 0.0101s
+-- add_index("orders", ["shipping_type_id"], {:name=>"index_orders_on_shipping_type_id", :using=>:btree})
+   -> 0.0163s
+-- create_table("products", {:force=>:cascade})
+   -> 0.0106s
+-- add_index("products", ["category_id"], {:name=>"index_products_on_category_id", :using=>:btree})
+   -> 0.0163s
+-- create_table("shipping_types", {:force=>:cascade})
+   -> 0.0110s
+-- add_foreign_key("orders", "shipping_types")
+   -> 0.0142s
+-- add_foreign_key("products", "categories")
+   -> 0.0151s
+-- initialize_schema_migrations_table()
+   -> 0.0603s
+-- create_table("addresses", {:force=>:cascade})
+   -> 0.0126s
+-- add_index("addresses", ["order_id"], {:name=>"index_addresses_on_order_id", :using=>:btree})
+   -> 0.0214s
+-- create_table("categories", {:force=>:cascade})
+   -> 0.0107s
+-- create_table("orders", {:force=>:cascade})
+   -> 0.0107s
+-- add_index("orders", ["shipping_type_id"], {:name=>"index_orders_on_shipping_type_id", :using=>:btree})
+   -> 0.0168s
+-- create_table("products", {:force=>:cascade})
+   -> 0.0105s
+-- add_index("products", ["category_id"], {:name=>"index_products_on_category_id", :using=>:btree})
+   -> 0.0199s
+-- create_table("shipping_types", {:force=>:cascade})
+   -> 0.0115s
+-- add_foreign_key("orders", "shipping_types")
+   -> 0.0159s
+-- add_foreign_key("products", "categories")
+   -> 0.0147s
+-- initialize_schema_migrations_table()
+   -> 0.0309s
+You have 1 pending migration:
+  20170206201945 CreateLineItems
+Run `rake db:migrate` to update your database then try again.
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:migrate
+== 20170206201945 CreateLineItems: migrating ==================================
+-- create_table(:line_items)
+   -> 0.0638s
+== 20170206201945 CreateLineItems: migrated (0.0639s) =========================
+
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rails s
+=> Booting WEBrick
+=> Rails 4.2.5.1 application starting in development on http://localhost:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+[2017-02-09 18:10:02] INFO  WEBrick 1.3.1
+[2017-02-09 18:10:02] INFO  ruby 2.2.2 (2015-04-13) [x86_64-darwin14]
+[2017-02-09 18:10:02] INFO  WEBrick::HTTPServer#start: pid=5205 port=3000
+
+
+Started GET "/" for ::1 at 2017-02-09 18:10:03 +0100
+  ActiveRecord::SchemaMigration Load (0.3ms)  SELECT `schema_migrations`.* FROM `schema_migrations`
+Processing by ProductsController#index as HTML
+  Product Load (0.5ms)  SELECT  `products`.* FROM `products`  ORDER BY `products`.`created_at` DESC LIMIT 9
+  Rendered products/_products.html.erb (24.5ms)
+  Rendered products/index.html.erb within layouts/application (32.6ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 1271ms (Views: 1208.6ms | ActiveRecord: 37.4ms)
+
+
+Started GET "/assets/cart.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/cart.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/admin/base.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/admin/products.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/products.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-603f330c29af013305325569c8c75d03d688963abd8cde4fffec17b5ce417bfb.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-2fe4f8a61d73606fbcb036b41f380591906a4da65a9eb5ec0a210fe6980b2ca7.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/admin/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/application.self-af2d034b64761bc762bcc5bae6fd73d0a13d703800627007a4645c8ae5286dc1.css?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2017-02-09 18:10:05 +0100
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.self-09ff30b1e8a93d1f7728b9855f55d9c9d8d5734c8861e0d8139994e50944572a.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.self-a29e91e8cd3ddaba9bbc466901d53ec2127e9256b9b941905d525a3a716bd1a5.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.self-a155b9d4b2f978905f0326c0f6635e1134fe91c6bfbfcbad079fa24a9fef2b0e.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.self-72f95ffa1071297725a9ac91989693d56d1abf23f441a47455073b0da2857a5b.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.self-11cf547be953f25f511cec668f6690473fd97b2f65502e4032f4030999a3f0c3.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.self-9314126777c6be5443e37ea7f7967d7914d72b3e60449ba50edc967446373059.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.self-122235057fbd4c6c7da377d59dc58f47b44cb1088a2e38e6ee6ce9d8ac29a26a.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.self-77d8e3a2499c1104ef146396a68b82469ee2bdb365199b874694698d10405e9a.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.self-7dc8bfbc2fbfabd2bad62c58ff8ffeaf8f20fb87c7ca6cd35f06d4dc19632587.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.self-57eb8422043cf0a85b7a9dc6843916eb0a3e35b419c7798a5eb254b918997631.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.self-a6cb16785434acb365ae426aef9f1fce05ed553cae7a965e4471c3da71509175.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.self-d2b642d8fbfc1d7041e2edefd66683ada567a980789dcd6f94fddda0b33408b5.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/twitter/bootstrap.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/admin/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/admin/base.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/admin/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/bootstrap.self-fdc98dee79ee88255e10cac6caa91338165cb76cf0d263744d8d90011fc2ef8f.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:06 +0100
+
+
+Started GET "/" for ::1 at 2017-02-09 18:10:11 +0100
+Processing by ProductsController#index as HTML
+  Product Load (0.5ms)  SELECT  `products`.* FROM `products`  ORDER BY `products`.`created_at` DESC LIMIT 9
+  Rendered products/_products.html.erb (1.7ms)
+  Rendered products/index.html.erb within layouts/application (3.8ms)
+  Category Load (0.8ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 128ms (Views: 125.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2017-02-09 18:10:12 +0100
+Processing by ProductsController#index as HTML
+  Product Load (0.5ms)  SELECT  `products`.* FROM `products`  ORDER BY `products`.`created_at` DESC LIMIT 9
+  Rendered products/_products.html.erb (1.3ms)
+  Rendered products/index.html.erb within layouts/application (3.4ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 136ms (Views: 133.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/polityka-prywatnosci" for ::1 at 2017-02-09 18:10:13 +0100
+Processing by StaticController#privacy as HTML
+  Rendered static/privacy.html.erb within layouts/application (1.1ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 161ms (Views: 158.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/regulamin" for ::1 at 2017-02-09 18:10:14 +0100
+Processing by StaticController#terms as HTML
+  Rendered static/terms.html.erb within layouts/application (0.6ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 148ms (Views: 146.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/dostawa" for ::1 at 2017-02-09 18:10:15 +0100
+Processing by StaticController#shipping as HTML
+  Rendered static/shipping.html.erb within layouts/application (0.6ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 155ms (Views: 153.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/o-sklepie" for ::1 at 2017-02-09 18:10:15 +0100
+Processing by StaticController#about as HTML
+  Rendered static/about.html.erb within layouts/application (2.1ms)
+  Category Load (0.6ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 186ms (Views: 184.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/dostawa" for ::1 at 2017-02-09 18:10:16 +0100
+Processing by StaticController#shipping as HTML
+  Rendered static/shipping.html.erb within layouts/application (0.7ms)
+  Category Load (0.6ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 137ms (Views: 136.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/regulamin" for ::1 at 2017-02-09 18:10:17 +0100
+Processing by StaticController#terms as HTML
+  Rendered static/terms.html.erb within layouts/application (0.1ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 140ms (Views: 138.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/polityka-prywatnosci" for ::1 at 2017-02-09 18:10:17 +0100
+Processing by StaticController#privacy as HTML
+  Rendered static/privacy.html.erb within layouts/application (0.1ms)
+  Category Load (0.6ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 150ms (Views: 148.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2017-02-09 18:10:18 +0100
+Processing by ProductsController#index as HTML
+  Product Load (0.5ms)  SELECT  `products`.* FROM `products`  ORDER BY `products`.`created_at` DESC LIMIT 9
+  Rendered products/_products.html.erb (1.1ms)
+  Rendered products/index.html.erb within layouts/application (2.8ms)
+  Category Load (0.5ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 140ms (Views: 138.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin" for ::1 at 2017-02-09 18:10:25 +0100
+Processing by Admin::ProductsController#index as HTML
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for ::1 at 2017-02-09 18:10:42 +0100
+Processing by Admin::ProductsController#index as HTML
+  Product Load (0.6ms)  SELECT  DISTINCT `products`.* FROM `products` LIMIT 30 OFFSET 0
+   (0.5ms)  SELECT DISTINCT COUNT(DISTINCT `products`.`id`) FROM `products`
+  Rendered admin/products/index.html.erb within layouts/admin (27.0ms)
+Completed 200 OK in 151ms (Views: 140.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/cart.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:10:43 +0100
+
+
+Started GET "/assets/cart.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:10:43 +0100
+
+
+Started GET "/assets/fontawesome-webfont-a7c7e4930090e038a280fd61d88f0dc03dad4aeaedbd8c9be3dd9aa4c3b6f8d1.woff" for ::1 at 2017-02-09 18:10:43 +0100
+^C[2017-02-09 18:10:49] INFO  going to shutdown ...
+[2017-02-09 18:10:49] INFO  WEBrick::HTTPServer#start done.
+Exiting
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rake db:seed
+Product ........................................................................................................................................................................................................
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ rails s
+=> Booting WEBrick
+=> Rails 4.2.5.1 application starting in development on http://localhost:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+[2017-02-09 18:12:17] INFO  WEBrick 1.3.1
+[2017-02-09 18:12:17] INFO  ruby 2.2.2 (2015-04-13) [x86_64-darwin14]
+[2017-02-09 18:12:17] INFO  WEBrick::HTTPServer#start: pid=5277 port=3000
+
+
+Started GET "/" for ::1 at 2017-02-09 18:12:18 +0100
+  ActiveRecord::SchemaMigration Load (0.3ms)  SELECT `schema_migrations`.* FROM `schema_migrations`
+Processing by ProductsController#index as HTML
+  Product Load (0.7ms)  SELECT  `products`.* FROM `products`  ORDER BY `products`.`created_at` DESC LIMIT 9
+  Rendered products/_products.html.erb (1755.7ms)
+  Rendered products/index.html.erb within layouts/application (1764.3ms)
+  Category Load (0.6ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 2105ms (Views: 2070.6ms | ActiveRecord: 11.4ms)
+
+
+Started GET "/assets/admin/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:20 +0100
+
+
+Started GET "/assets/admin/products.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:20 +0100
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-603f330c29af013305325569c8c75d03d688963abd8cde4fffec17b5ce417bfb.css?body=1" for ::1 at 2017-02-09 18:12:20 +0100
+
+
+Started GET "/assets/static.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:20 +0100
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:20 +0100
+
+
+Started GET "/images/nil" for ::1 at 2017-02-09 18:12:20 +0100
+
+ActionController::RoutingError (No route matches [GET] "/images/nil"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (6.4ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (178.3ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.2ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (115.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (201.9ms)
+
+
+Started GET "/assets/admin/base.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-2fe4f8a61d73606fbcb036b41f380591906a4da65a9eb5ec0a210fe6980b2ca7.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/cart.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/products.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/application.self-af2d034b64761bc762bcc5bae6fd73d0a13d703800627007a4645c8ae5286dc1.css?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.self-09ff30b1e8a93d1f7728b9855f55d9c9d8d5734c8861e0d8139994e50944572a.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.self-a29e91e8cd3ddaba9bbc466901d53ec2127e9256b9b941905d525a3a716bd1a5.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.self-72f95ffa1071297725a9ac91989693d56d1abf23f441a47455073b0da2857a5b.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.self-9314126777c6be5443e37ea7f7967d7914d72b3e60449ba50edc967446373059.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.self-a155b9d4b2f978905f0326c0f6635e1134fe91c6bfbfcbad079fa24a9fef2b0e.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.self-122235057fbd4c6c7da377d59dc58f47b44cb1088a2e38e6ee6ce9d8ac29a26a.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.self-11cf547be953f25f511cec668f6690473fd97b2f65502e4032f4030999a3f0c3.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.self-77d8e3a2499c1104ef146396a68b82469ee2bdb365199b874694698d10405e9a.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.self-a6cb16785434acb365ae426aef9f1fce05ed553cae7a965e4471c3da71509175.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.self-7dc8bfbc2fbfabd2bad62c58ff8ffeaf8f20fb87c7ca6cd35f06d4dc19632587.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.self-57eb8422043cf0a85b7a9dc6843916eb0a3e35b419c7798a5eb254b918997631.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.self-d2b642d8fbfc1d7041e2edefd66683ada567a980789dcd6f94fddda0b33408b5.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/twitter/bootstrap.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/admin/base.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/admin/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/admin/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/bootstrap.self-fdc98dee79ee88255e10cac6caa91338165cb76cf0d263744d8d90011fc2ef8f.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/cart.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/static.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2017-02-09 18:12:21 +0100
+
+
+Started GET "/images/nil" for ::1 at 2017-02-09 18:12:21 +0100
+
+ActionController::RoutingError (No route matches [GET] "/images/nil"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.3ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.1ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (148.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.1ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (67.4ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (156.7ms)
+
+
+Started GET "/produkt/199-bypass-sensor" for ::1 at 2017-02-09 18:12:24 +0100
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"199-bypass-sensor"}
+  Product Load (0.6ms)  SELECT  `products`.* FROM `products` WHERE `products`.`id` = 199 LIMIT 1
+  Category Load (0.5ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1
+  Rendered products/show.html.erb within layouts/application (4.7ms)
+  Category Load (0.4ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 168ms (Views: 119.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/images/nil" for ::1 at 2017-02-09 18:12:24 +0100
+
+ActionController::RoutingError (No route matches [GET] "/images/nil"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.3ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (111.1ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (65.3ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (145.8ms)
+
+
+Started GET "/" for ::1 at 2017-02-09 18:12:32 +0100
+Processing by ProductsController#index as HTML
+  Product Load (1.1ms)  SELECT  `products`.* FROM `products`  ORDER BY `products`.`created_at` DESC LIMIT 9
+  Rendered products/_products.html.erb (37.4ms)
+  Rendered products/index.html.erb within layouts/application (40.7ms)
+  Category Load (0.7ms)  SELECT `categories`.* FROM `categories`
+Completed 200 OK in 165ms (Views: 162.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/images/nil" for ::1 at 2017-02-09 18:12:32 +0100
+
+ActionController::RoutingError (No route matches [GET] "/images/nil"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/Tomasz/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.2ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (136.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (69.2ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.9ms)
+  Rendered /Users/Tomasz/.rvm/gems/ruby-2.1.3/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (150.6ms)
+
+
+Started GET "/admin" for ::1 at 2017-02-09 18:12:38 +0100
+Processing by Admin::ProductsController#index as HTML
+  Product Load (0.7ms)  SELECT  DISTINCT `products`.* FROM `products` LIMIT 30 OFFSET 0
+  Category Load (0.5ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 7 LIMIT 1
+  Category Load (0.4ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1
+  Category Load (0.4ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1
+  Category Load (0.4ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1  [["id", 3]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  Category Load (0.5ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 6 LIMIT 1
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  Category Load (0.4ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 8 LIMIT 1
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 6 LIMIT 1  [["id", 6]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 7 LIMIT 1  [["id", 7]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1  [["id", 2]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1  [["id", 3]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1  [["id", 3]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  Category Load (0.5ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 5 LIMIT 1
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  Category Load (0.6ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 5 LIMIT 1  [["id", 5]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1  [["id", 2]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1  [["id", 3]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 2 LIMIT 1  [["id", 2]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 4 LIMIT 1  [["id", 4]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 3 LIMIT 1  [["id", 3]]
+  CACHE (0.0ms)  SELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 6 LIMIT 1  [["id", 6]]
+   (0.6ms)  SELECT DISTINCT COUNT(DISTINCT `products`.`id`) FROM `products`
+  Rendered admin/products/index.html.erb within layouts/admin (101.5ms)
+Completed 200 OK in 230ms (Views: 222.3ms | ActiveRecord: 5.6ms)
+^C[2017-02-09 18:43:03] INFO  going to shutdown ...
+[2017-02-09 18:43:03] INFO  WEBrick::HTTPServer#start done.
+Exiting
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ mine .
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ 
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ history
+   18  git st
+   19  rails s
+   20  git sy
+   21  git st
+   22  git st
+   23  git st
+   24  git add .
+   25  git commit -am"test test"
+   26  git branch
+   27  git checkout 6_Test.Wyswietlanie_produktow_w_bd
+   28  git branch
+   29  git checkout  6.Wyswietlanie_produktow_w_bd
+   30  git branch
+   31  git branch
+   32  rails s
+   33  git st
+   34  git add .
+   35  git commit -am"Testy testy"
+   36  git branch
+   37  git push origin 6.Wyswietlanie_produktow_w_bd
+   38  rails s
+   39  rails s
+   40  git st
+   41  git branch
+   42  git st
+   43  git add .
+   44  git commit -am"Ruszyla"
+   45  git push origin 6.Wyswietlanie_produktow_w_bd
+   46  rails s
+   47  git st
+   48  git add .
+   49  git commit -am"Nasz kochany CarrierWave"
+   50  git branch
+   51  git push origin 6.Wyswietlanie_produktow_w_bd
+   52  git checkoutm master
+   53  git checkout master
+   54  git merge 6.Wyswietlanie_produktow_w_bd
+   55  git push origin master
+   56  p = Product.new
+   57  rails c
+   58  tree
+   59  tree app/assets/images
+   60  istats
+   61  mine .
+   62  ls
+   63  cd Applicationss
+   64  cd Applicationss_Rails/
+   65  ls
+   66  cd Videopoint/
+   67  cd Projekty/
+   68  cd Shop_Online/
+   69  ls
+   70  rails s
+   71  git branch
+   72  git checkout  6.Wyswietlanie_produktow_w_bd
+   73  git branch
+   74  git st
+   75  mine .
+   76  rails s
+   77  mine .
+   78  rails s
+   79  git st
+   80  git add .
+   81  git branch
+   82  git commit -am" Wyswietlanie produktow z prawdziwej BD"
+   83  git push origin 6.Wyswietlanie_produktow_w_bd
+   84  git drop
+   85  rake db:drop
+   86  rake db:create
+   87  rake db:migrate
+   88  rake db:seed
+   89  rails s
+   90  git st
+   91  git add .
+   92  git commit -am"rake db:drop crate migrate seed"
+   93  git branch
+   94  git push origin 6.Wyswietlanie_produktow_w_bd
+   95  git branch
+   96  git checkut master
+   97  git checkout master
+   98  git merge 6.Wyswietlanie_produktow_w_bd
+   99  git checkout -b 7.Usprawnienia_nawigacji_Optymalizacja_SEO
+  100  git branch
+  101  rails s
+  102  git branch
+  103  git st
+  104  git add .
+  105  git commit -am"Podswietlanie Paska Bocznego -SideBar"
+  106  git branch
+  107  git push origin 7.Usprawnienia_nawigacji_Optymalizacja_SEO
+  108  mine .
+  109  rails s
+  110  git st
+  111  git add .
+  112  git commit -am"Podswietlanie linkow w pasku nawigacji"
+  113  git branch
+  114  git push origin 7.Usprawnienia_nawigacji_Optymalizacja_SEO
+  115  rails s
+  116  git sty
+  117  git syt
+  118  git st
+  119  git add .
+  120  git commit -am"Spolszczenie nazw w pasku, zamiast categries/1 i products/1 to kategoria i produkt"
+  121  git branch
+  122  git push origin 7.Usprawnienia_nawigacji_Optymalizacja_SEO
+  123  rails s
+  124  git sty
+  125  git st
+  126  git add .
+  127  git commit -am"Wyswietlanie w adresie url nazwy prodkutu, kategori itp"
+  128  git branch
+  129  git push origin 7.Usprawnienia_nawigacji_Optymalizacja_SEO
+  130  git checkout master
+  131  git merge 7.Usprawnienia_nawigacji_Optymalizacja_SEO
+  132  git branch
+  133  git checkout -b "8.Panel_admina"
+  134  git branch
+  135  mine .
+  136  cd Applicationss_Rails/
+  137  cd Videopoint/
+  138  cd Projekty/
+  139  cd Shop_Online/
+  140  rails s
+  141  ls
+  142  cd Applicationss_Rails/
+  143  ls
+  144  mine .
+  145  istats
+  146  istats
+  147  istats
+  148  istats
+  149  istats
+  150  istats
+  151  cd Applicationss_Rails/
+  152  cd Videopoint/
+  153  cd Projekty/
+  154  cd Shop_Online/
+  155  rails s
+  156  git branch
+  157  istats
+  158  istats
+  159  mine .
+  160  ls
+  161  cd Applicationss_Rails/
+  162  cd Videopoint/
+  163  cd Projekty/
+  164  cd Shop_Online/
+  165  rails s
+  166  mine .
+  167  istats
+  168  istats
+  169  istats
+  170  istats
+  171  istats
+  172  istats
+  173  istats
+  174  istats
+  175  istats
+  176  istats
+  177  istats
+  178  istats
+  179  istats
+  180  istats
+  181  istats
+  182  istats
+  183  istats
+  184  cd Applicationss_Rails/
+  185  cd Videopoint/
+  186  cd Projekty/
+  187  cd Shop_Online/
+  188  rails s
+  189  istats
+  190  istats
+  191  istats
+  192  istats
+  193  istats
+  194  istats
+  195  git branch
+  196  git st
+  197  git add .
+  198  git commit -am"Panel admina"
+  199  git push origin 8.Panel_admina
+  200  git branch
+  201  rails g controller admin/products index new edit
+  202  istats
+  203  rails g controller admin/categories index new edit
+  204  istats
+  205  istats
+  206  istats
+  207  rake routes
+  208  mine .
+  209  istats
+  210  mine .
+  211  rails g controller admin/base
+  212  istats
+  213  istats
+  214  git st
+  215  git add .
+  216  git commit -am"Kontroller bazowy panelu admina"
+  217  git branch
+  218  git push origin 8.Panel_admina
+  219  git st
+  220  git add .
+  221  git commit -am"Layouts admina"
+  222  git push origin 8.Panel_admina
+  223  mine .
+  224  istats
+  225  git branch
+  226  git add .g
+  227  git commit -am"Uzupelnijmy kontrollery admina, produkow oraz kategori"
+  228  git push origin 8.Panel_admina
+  229  git st
+  230  git add .
+  231  git commit -am" Widoczek index and parszal form dla naszego admin/products"
+  232  git push origin 8.Panel_admina
+  233  rails s
+  234  mine .
+  235  rails c
+  236  rails s
+  237  git st
+  238  git add .
+  239  git commit -am"Panel admina "
+  240  git push origin 8.Panel_admina
+  241  cd Applicationss_Rails/
+  242  cd Videopoint/
+  243  cd Projekty/
+  244  cd Shop_Online/
+  245  rails s
+  246  mine .
+  247  istats
+  248  ls
+  249  cd Applicationss_Rails/
+  250  cd Videopoint/
+  251  cd Projekty/
+  252  ls
+  253  cd x_trash/
+  254  ls
+  255  rails new test_pub13
+  256  cd test_pub13
+  257  ls
+  258  istats
+  259  ls
+  260  rails g scaffold Product name title published:boolean
+  261  mine .
+  262  rake db:create
+  263  rake db:migrate
+  264  rails s
+  265  mine .
+  266  rails s
+  267  istats
+  268  istats
+  269  istats
+  270  cd Applicationss_Rails/
+  271  cd Videopoint/
+  272  cd Projekty/
+  273  cd Shop_Online/
+  274  rails s
+  275  ralis s
+  276  rails ss
+  277  rails s
+  278  mine .
+  279  istats
+  280  istats
+  281  istats
+  282  istats
+  283  istats
+  284  istats
+  285  istats
+  286  istats
+  287  istats
+  288  istats
+  289  istats
+  290  istats
+  291  istats
+  292  git st
+  293  git branch
+  294  git st
+  295  git branch
+  296  git add .
+  297  git commit -am"RubyMine bundle install"
+  298  git push origin 8.Panel_admina
+  299  git checkout master
+  300  git merege 8.Panel_admina
+  301  git merge 8.Panel_admina
+  302  git branch
+  303  git checkout -b 9.Ransack_Formularz_Przeszukiwania_Produktow
+  304  git branch
+  305  istats
+  306  istats
+  307  istats
+  308  mine .
+  309  istats
+  310  istats
+  311  istats
+  312  git branch
+  313  git add .
+  314  git commit -am"Formularz wyszukiwania produktow"
+  315  git push origin 9.Ransack_Formularz_Przeszukiwania_Produktow
+  316  istats
+  317  git branch
+  318  git add .
+  319  git push origin 9.Ransack_Formularz_Przeszukiwania_Produktow
+  320  git commit -am"Ustawiamy nasz kontroller wdg.dokumentacji ransacka"
+  321  git push origin 9.Ransack_Formularz_Przeszukiwania_Produktow
+  322  istats
+  323  istats
+  324  mine .
+  325  istats
+  326  git st
+  327  git add .
+  328  git commit -am
+  329  git commit -am"Formularz wyszukiwania produktow Ransack w admin/products/index"
+  330  git branch
+  331  git push origin 9.Ransack_Formularz_Przeszukiwania_Produktow
+  332  git st
+  333  git add .
+  334  git commit -am"Sortowanie po nazwie i cenie za pomoca Ransacka - zajebioza"
+  335  git branch
+  336  git push origin 9.Ransack_Formularz_Przeszukiwania_Produktow
+  337  istats
+  338  istats
+  339  git branch
+  340  git checkout master
+  341  git merge 9.Ransack_Formularz_Przeszukiwania_Produktow
+  342  git checkout -b 10.Koszyk_plan
+  343  git branch
+  344  istats
+  345  ls
+  346  cd Applicationss_Rails/
+  347  cd Videopoint/
+  348  cd Projekty/
+  349  ls
+  350  cd x_trash/
+  351  la
+  352  ls
+  353  cd test_pub14
+  354  rails new test_pub14
+  355  cd test_pub14/
+  356  ls
+  357  rails g scaffold Product name titel published:boolean
+  358  rake db:migrate
+  359  mine .
+  360  mine .
+  361  rails s
+  362  rails s
+  363  istats
+  364  istats
+  365  cd ..
+  366  ls
+  367  cd ..
+  368  ls
+  369  cd Shop_Online/
+  370  ls
+  371  rails s
+  372  mine .
+  373  istats
+  374  istats
+  375  istats
+  376  istats
+  377  istast
+  378  istats
+  379  istats
+  380  ls
+  381  cd Applicationss_Rails/
+  382  ls
+  383  cd Videopoint/
+  384  cd Projekty/
+  385  cd Shop_Online/
+  386  ls
+  387  rails s
+  388  mine .
+  389  git branch
+  390  git st
+  391  rails g model shipping_type name:string cost:decimal
+  392  rails g model address first_name:string last_name:string city:string zip_code:string street:string email:string order:belongs_to 
+  393  mine .
+  394  istats
+  395                 czyli tworzymy model adsress o polach:
+  396                       fist_name
+  397  istats
+  398  rails g model order comment:text shipping_type:belongs_to shipping_cost:decimal
+  399  rails g model line_item product:belongs_to unit_price:decimal quantity:integer order:belongs_to item_name:string
+  400  istats
+  401  mine .
+  402  git st
+  403  irb
+  404  ls
+  405  cd Applicationss_Rails/
+  406  cd Videopoint/
+  407  cd Projekty/
+  408  cd x_trash/
+  409  mkdir script.rb
+  410  ls
+  411  cd script.rb/
+  412  irb 
+  413  mine .
+  414  ls
+  415  whoami
+  416  pwd
+  417  ls
+  418  cd ..
+  419  ls
+  420  cd script.rb/
+  421  ls
+  422  mkdir script2.rb
+  423  ls
+  424  rm -r script.rb 
+  425  ls
+  426  mine .
+  427  vim
+  428  ls
+  429  ruby script2.rb/
+  430  ls
+  431  cd script2.rb/
+  432  ls
+  433  cd ..
+  434  ls
+  435  ruby script2.rb/
+  436  ls
+  437  cd script2.rb/
+  438  mine .
+  439  vim
+  440  ls
+  441  cd Applicationss_Rails/
+  442  cd Videopoint/
+  443  cd Projekty/
+  444  cd x_trash/
+  445  ls
+  446  ls
+  447  rename script.rb/ ruby_test
+  448  ls
+  449  rename script.rb/ script
+  450  ls
+  451  ls
+  452  mv script.rb/ ruby_script
+  453  ls
+  454  ls
+  455  cd ruby_script/
+  456  ruby script.rb
+  457  ls
+  458  ruby script3.rb
+  459  mine .
+  460  ls
+  461  cd scrypt.rb 
+  462  ls
+  463  ruby scrypt.rb 
+  464  ls
+  465  cd ..
+  466  ls
+  467  cd ..
+  468  ls
+  469  c Shop_Online/
+  470  cd Shop_Online/
+  471  ls
+  472  rails s
+  473  mine .
+  474  istats
+  475  git st
+  476  git branch
+  477  git log
+  478  git ln -la
+  479  git log --oneline
+  480  git branch
+  481  rails g mailer order_mailer order_confirmation order_in_progress order_shipped order_cancelled
+  482   rails g controller cart show edit confirmation
+  483  rake db:migrate
+  484  mine 
+  485  mine .
+  486  rake db:migrate
+  487  rake db:migrate
+  488  rake db:migrate
+  489  mine .
+  490  git branch
+  491  whoami
+  492  history
+  493  rake db:migrate
+  494  rake db:migrate
+  495  rake db:migrate
+  496  rake db:migrate
+  497  rake db:migrate:up VERSION=20170206201114
+  498  rake db:migrate
+  499  cd ..
+  500  ls
+  501  ls
+  502  cd Applicationss_Rails/
+  503  cd Videopoint/
+  504  cd Projekty/
+  505  cd Shop_Online/
+  506  mine .
+  507  rake db:migrate
+  508  rake db:migrate
+  509  rake db:drop
+  510  rake db:create
+  511  rake db:setup
+  512  rake db:migrate
+  513  rails s
+  514  rake db:seed
+  515  rails s
+  516  mine .
+  517  history
+MacBook-Pro-Tomasz:Shop_Online Tomasz$ 

@@ -1079,8 +1079,113 @@
         - I teraz jak odswiezymy strone to widzimy, ze nazwa jak i cena - sa linkami i jak je klikniemy
           dostajemy oczekiwany winik
 
+9.11 Koszyk_plan
+     ** Nasz koszyk bedzie pewnym stanem zamówienia (order-zamowienie)
+        - Wiec przedewszytkime bedziemy potrzebowali modelu zamowienia-order
+          ktory bedzie przechowywal wszystkie rzeczy jakie uzytkonik zamowil m.innymi tj:
+                           - lista rzeczy,
+                           - produktow,
+                           - sposób i lista dostawy ,
+                           - adres dostawy
 
 
+     * Wiec stworzmy model (shipping_type) - wysylka,  potrzebny nam do tego, ktory bedzie zawieral nazwe jak również cene
+
+              rails g model shipping_type name:string cost:decimal
+
+                   *** decimal, dlatego ze ceny powinno sie przechowywac jako ulamki dziesietne, nigdy jako float
+                       poniewaz floatsy gubią precyzje
+                       a w przypadku pieniedzy jest to nieporzadane
+
+     * Dodatkowo stworzmy model (address) -przechowujacy adres dostawy  (address)
+
+               rails g model address first_name:string last_name:string city:string zip_code:string street:string email:string order:belongs_to
+
+               czyli tworzymy model adsress o polach:
+                     fist_name
+                     last_name
+                     city - miasto
+                     zip_code - kod pocztowy
+                     street - ulica
+                     email
+                     order:belongs_to   -> polaczymy ten model(address)  odrazu z naszym zamowieniem (order)
+
+     * Czas na model (order)  - czyli zamowinie
+       - dodamy mozliwosc zamieszczenia jakiegos komentarza (pole commenter:text)
+       - zamowienie bedzie przechowywalo swój adres dostawy (shipping_type: belongs_to)
+       - zamowienie bedzie takze przechowywalo koszst dostawy (shipping_cost:decimal)
+                  UWAGA:
+                  ** i tutaj rodzi sie pytanie?
+                     - dlaczego przechowujemy koszt dostawy skoro przechowujemy ten koszt dostawy w modelu shipping_type
+                       odpowiedz jest prosta
+                          co jezeli uzytkownik zlozy zamowienie a my w BD zmienimy koszt dostawy
+                          wtedy sumaryczne ceny wszystkich zamowien sie totalnie zepsuja
+                          poniewaz zmienilismy jedna z cen skladowych, ktora wpywala na zamowienie
+                          Natomiast jezeli w momencie skladania zamowienia bedziemy zapamietywac aktualna cene dostawy
+                          i nawet jezeli w przyszlosci zmienimy ta cene w BD to starsze zamowienia beda przechowywac ta
+                          starsza cene i w ten sposob nie wplynie to negatywnie na ceny wszystkich zamowien
+
+               rails g model order comment:text shipping_type:belongs_to shipping_cost:decimal
+
+                   czyli tworzymy model order o polach:
+                         comment
+                         shipping_type:belongs_to - wysylka, laczymy nasz model order z shipping_type
+                         shipping_cost:decimal  - i w tym modelu dodatkowo cena
+
+
+     * Kolejny model ktory bedzie przechowywal pozycje w zamowieniu line_item
+       - i taka pozycja bedzie przechowywala odniesienie do produktu                 product:belongs_to
+       - bedzie przechowywala cene za pojedynczy egzemplarz                          unit_price:decimal
+       - jak rowniez bedzie przechowywala cene produktu
+       - potrzebujemy jeszcze pola z liczba sztuk                                    quantity:integer
+       - oraz zamowienia do jakiego dana pozycja nalerzy                             order:belongs_to
+       - dobrze by bylo przechowac nazwe produktu w momencie dodania go do koszyka   item_name:string
+
+
+       rails g model line_item product:belongs_to unit_price:decimal quantity:integer order:belongs_to item_name:string
+
+
+     * Dobrze by bylo wygenerowac kolejny model typu mailer (order_mailer) - ktory bedzie wysylal uzytkownikowi stany zamowienia
+           np:
+              - przyjelismy zamowienie
+              - zamowienie zostalo wyslane
+              - zamowienie zostalo anulowane itd.
+
+           order_mailer   - bedzie zawieral nastepujace wartosci:
+              order_confirmation - czyli potwierdzenie zlozenia zamowienia
+              order_in_progres   - czyli ze zamowienie wlasnie zostalo przyjete do realizacji
+              order_shipped      - powiadomienie ze zamowienie wlasnie zostalo wyslane
+              order_cancelled    - zamowienie zostalo anulowane
+
+       rails g mailer order_mailer order_confirmation order_in_progress order_shipped order_cancelled
+
+
+     * Na koniec  wygenerujemy nasz kontroller ktory bedzie sluzyl do obslugi koszyka
+         cart -koszyk
+         akcje:
+               show
+               edit
+               confirmation  - czyli akcja pokazujaca koszyk z calym podsumowaniem i przyciskiem zlozenia zamowienia
+
+         Nasz kontroller bedzie posiadal takze dodatkowe metody ktore nie beda posiadaly widokow
+         tj. np: dodawanie produktow lub usowanie
+
+         rails g controller cart show edit confirmation
+
+
+
+     rake db:migrate
+     - tu mi niestety nie dziala
+     - wiec
+
+     rake db:drop
+     rake db:create
+     rake db:setup
+     rake db:seed
+     rake db:migrate
+
+     rails s
+     - i smiga   - Fuck, this is fantastic :)
 
 
 

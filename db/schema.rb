@@ -11,13 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120184859) do
+ActiveRecord::Schema.define(version: 20170206201945) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "city",       limit: 255
+    t.string   "zip_code",   limit: 255
+    t.string   "street",     limit: 255
+    t.string   "email",      limit: 255
+    t.integer  "order_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "product_id", limit: 4
+    t.decimal  "unit_price",             precision: 10
+    t.integer  "quantity",   limit: 4
+    t.integer  "order_id",   limit: 4
+    t.string   "item_name",  limit: 255
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.text     "comment",          limit: 65535
+    t.integer  "shipping_type_id", limit: 4
+    t.decimal  "shipping_cost",                  precision: 10
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "orders", ["shipping_type_id"], name: "index_orders_on_shipping_type_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -32,5 +69,15 @@ ActiveRecord::Schema.define(version: 20170120184859) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
+  create_table "shipping_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.decimal  "cost",                   precision: 10
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "products"
+  add_foreign_key "orders", "shipping_types"
   add_foreign_key "products", "categories"
 end
