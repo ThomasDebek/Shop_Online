@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206201945) do
+ActiveRecord::Schema.define(version: 20170213153143) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name", limit: 255
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20170206201945) do
 
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
+
+  create_table "order_transitions", force: :cascade do |t|
+    t.string   "to_state",    limit: 255,   null: false
+    t.text     "metadata",    limit: 65535
+    t.integer  "sort_key",    limit: 4,     null: false
+    t.integer  "order_id",    limit: 4,     null: false
+    t.boolean  "most_recent"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "order_transitions", ["order_id", "most_recent"], name: "index_order_transitions_parent_most_recent", unique: true, using: :btree
+  add_index "order_transitions", ["order_id", "sort_key"], name: "index_order_transitions_parent_sort", unique: true, using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.text     "comment",          limit: 65535
