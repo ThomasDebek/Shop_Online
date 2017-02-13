@@ -1236,8 +1236,161 @@
                       end
                     end
 
+9.12 Maszyna stanów  STATESMAN
+    * Skorzystamy jak zwykle z jednego z gemow jakie oferuja railsy
+         https://github.com/gocardless/statesman
 
 
+    * Maszyna stanów jest pojeciem matematycznym
+      - jest pewna struktura ktora przechowuje różne stany i definjuje mozliwosc przejscia miedzy różnymi stanami
+        Przykładowo:
+           - W naszym zamówieniu bedziemy mieli rózne stany tj:
+                     ^ nowe
+                     ^ potwierdzone
+                     ^ przyjete do realizacji
+                     ^ wyslane
+                     ^ anulowane
+           - I bedziemy miec sciezke dojscia do róznych stanow
+      - Krótko mówiąc jeżeli zamówienie bedzie w stanie potwierdzonym
+        to jedynym stanem do którego zamówienie moze przejsc to jest przyjete do realizacji albo anulowane.
+        A w momecie kiedy zamówienie bedzie przyjete do realizacji to jednym dozwolonym stanem bedzie albo wyslane
+        lub anulowane.
+      - Jak widzimy w dokumentacji STATESMAN oferuje (zerknijmy na dokumentacje)
+           ^ mozliwosc zdefiniowania wszystkich stanow
+                          state :pending, initial: true
+                          state :checking_out
+                          state :purchased
+                          state :shipped
+                          state :cancelled
+                          state :failed
+                          state :refunded
+           ^ po drugie - zdefiniowania przejsc pomiedzy stanami
+                           transition from: :pending,      to: [:checking_out, :cancelled]
+                           transition from: :checking_out, to: [:purchased, :cancelled]
+                           transition from: :purchased,    to: [:shipped, :failed]
+                           transition from: :shipped,      to: :refunded
+           ^ posiada takze metody chroniące przed przjsciem do stanów jezeli jakis warunk nie jest spelniony
+                              guard_transition(to: :checking_out) do |order|
+                                order.products_in_stock?
+                              end
+           ^ posiada takze callbeacki
+             - ktory jest wywolany przed przejsciem z jednego stanu do innego
+                       before_transition(from: :checking_out, to: :cancelled) do |order, transition|
+                         order.reallocate_stock
+                       end
+             - w naszym przypadku jezeli bedziemy przechodzic ze stanu przyjete do realizacji do stanu wyslane
+               to bedziemy wysylac juz tylko emaila
+      - W dokumentacji mamy takze w jaki sposob skonfigurowac STATESMANA
+        i sam Statesman uzywa w przykladach "Order" - jest to bardzo dobry przyklad maszyn stanow
+                        class Order < ActiveRecord::Base
+                          include Statesman::Adapters::ActiveRecordQueries
+
+                          has_many :order_transitions, autosave: false
+
+                          def state_machine
+                            @state_machine ||= OrderStateMachine.new(self, transition_class: OrderTransition)
+                          end
+
+                          def self.transition_class
+                            OrderTransition
+                          end
+                          private_class_method :transition_class
+
+                          def self.initial_state
+                            :pending
+                          end
+                          private_class_method :initial_state
+                        end
+      - Mamy takze sposób instalcji naszego gemu
+               Persistence
+
+               By default Statesman stores transition history in memory only.
+               It can be persisted by configuring Statesman to use a different adapter.
+               For example, ActiveRecord within Rails:
+
+      ZACZNYIJMY ZABAWE Z NASZYM NOWYM GEMEM
+      * Po piersze - przedewszystkim chcemy aby przejscia miedzy stanami byly przechowywane w bazie danych a nie w pamieci
+        jak to domyslnie robi Statesman
+        - musimy stworzyc plik  statesman.rb
+        - i dodac do niego odpowiednia tresc
+
+                  config/initializers/statesman.rb
+
+                  Statesman.configure do
+                    storage_adapter(Statesman::Adapters::ActiveRecord)
+                  end
+                  # I ten kod bedzie wywolywany za kazdym razem
+                  # - kiedy bedzie uruchamiana nasz aplikacja
+                  # - czyli w momecie startu serwera, konsoli lub testow
+
+      * Po drugie potrzebujemy modelu
+        - i tutaj takze skorzystamy z dokumentacji
+
+               rails g statesman:active_record_transition Order OrderTransition
+
+        - wejdzmy teraz do wygenerowanego modelu  order_transitions
+        - i zmienimy tu jedna rzecz:
+               ^ Widzimy ze jest napisane order_transitions ale my zmienimy na transitions
+                     zmieniamy z :  belongs_to :order, inverse_of: :order_transitions
+                               na:   belongs_to :order, inverse_of: :transitions
+               ^ inverse_of - ogolnie opisuje nazwe stansakcji ktora jest w druga strone
+                            - wiec jezeli zamowienie bedzie mialo wiele transitions, czyli przejsc
+                              pomiedzy jednym stanem a drugim
+                              to pojedyncze transitions oczywiscie bedzie nalezalo do zamoienia
+                              ale bedzie tez opisywalo ze chodzi o odwrotna strone asocjacji transitions
+
+      * Pozostalo nam reczne stworzenie maszyny stanow
+             models/order_state_machine.rb
+
+
+             class OrderStateMachine
+               include Statesman::Machine
+
+               # Definijemy nazw stanow
+               state :new, initial: true      # Czyli zamowienie jest nowe, jest jeszcze koszykiem, nie zostalo zlozone
+               state :confirmed               # Zostalo potwierdzone
+               state :in_progress             # Zamówienie w trakcjie realizacji
+               state :shipped                 # Zamówienie wyslane
+               state :cancelled               # Zamowienie anulowane
+
+               # Tutaj dodamy mozliwosci przejscia pomiedzy jednym stanem a drugim
+               transition from: :new, to: [:confirmed, :cancelled]          # Czyli z koszyka mozemy przejsc z zamowienia potwierdzonego lub anulowanego
+               transition from: :confirmed, to: [:in_progress, :cancelled]  # Z potweirdzonego mozemy przejsc do realizajci lub anulowanego
+               transition from: :in_progress, to: [:shipped, :cancelled]    # Z realizacji mozemy przejsc do wyslanego lub anulowanego
+               transition from: :shipped, to: [:cancelled]                  # Z wyslanego mozemy przejsc do anulowanego
+
+
+               # Tutaj dodatkowo opiszemy co ma sie dziac gdy zamowienie przechodzi do stanu anulowanego
+               after_transition(to: :cancelled) do |order, transition|
+                 OrderMailer.order_cancelled(order).deliver               # Oczywiescie bedziemy wysylac maila informujacego ze zamowienie zostalo anulowane
+               end
+
+               after_transition(to: :confirmed) do |order, transition|
+                 OrderMailer.order_confirmation(order).deliver            # Tu dziekujemy za zloznie zamowienia
+               end
+
+               after_transition(to: :in_progress) do |order, transition|
+                 OrderMailer.order_in_progress(order).deliver             # Tu zamowienia przyjete do realizacji
+               end
+
+               after_transition(to: :shipped) do |order, transition|
+                 OrderMailer.order_shipped(order).deliver                 # I tu inforamcaja ze zamowienie zostalo wyslane
+               end
+
+
+               # Tutaj mamy wlasna metode w ktorej nadajemy polski odpowiednik
+               # - kazdemu ze stanu
+               # - bedzie to nam sluzylo w panelu admina, aby wyswietlic  przyjazny dla administratora sklepu formularz, ktory pozowli na zmiane zamowienia
+               def self.states_map
+                 {
+                     "new" => "Niepotwierdzone",
+                     "confirmed" => "Złożone przez klienta",
+                     "in_progress" => "Przyjęte do realizacji",
+                     "shipped" => "Wysłane",
+                     "cancelled" => "Anulowane",
+                 }
+               end
+             end
 
 
 
