@@ -1188,6 +1188,48 @@
      - i smiga   - Fuck, this is fantastic :)
 
 
+     * Teraz wejdzmy do konsoli rails i dodajmy dwa typy dostawy ktore uzytkownik bedzie mogl wybrac
+       - 1 typ to typ dostawy poczta
+       - 2 typ do kurier
+
+       rails c
+        ShippingType.create name: "Poczka Pocztowa", cost: 10.0
+        ShippingType.create name: "Kurier", cost: 20.0
+
+     * Teraz wstepnie skonfigurujemy nasze modele
+         # MODEL-pierszy z nich to address
+             - juz oczywiscie z generatora jest polonczony z zamoieniem(order)
+             - ale warto dodac kilka regul walidacji
+             - bedziemy walidowac imie, nazwisko, kod pocztowy, email i miasto
+
+                       class Address < ActiveRecord::Base
+                         belongs_to :order
+                         validates :first_name, :last_name, :zip_code, :street, :email, :city, presence: true
+                       end
+
+         # MODEL-Drugi z nich to line_item czyli pozycja w zamowieniu
+           - mamy juz polaczone modele
+           - ale dodatkowo dodamy metode wyswietlajaca cene (czyli bedzie mnozyla cene pojedynczego egzemplarza z liczba sztuk)
+
+                       class LineItem < ActiveRecord::Base
+                         belongs_to :product
+                         belongs_to :order
+
+                         def full_price
+                           unit_price * quantity
+                         end
+                       end
+
+         # MODEL-trzeci do order - zamowienie
+             - przedewszystkim musimy dodac fakt ze musimy miec wiele pozycji
+
+
+
+
+
+
+
+
 
 
 
