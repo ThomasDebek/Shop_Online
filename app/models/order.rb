@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
     @state_machine ||= OrderStateMachine.new(self, transition_class: OrderTransition, association_name: :transitions)
   end
 
-  
+
   # Metoda zwaracajaca sume calego zamowienia
   # Na sume calego zamówienia skladaja sie dwie rzeczy:
   #  - po pierwsze suma wszystkich pozycji w zamowieniu
