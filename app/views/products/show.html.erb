@@ -6,9 +6,9 @@
 
     <p class="lead"><%= number_to_currency(@product.price) %></p>
     <p>
-      <%= link_to "#", class: "btn btn-primary" do %>
-        <span class="fa fa-shopping-cart">  Dodaj do koszyka </span>
-      <% end %>
+      <%= link_to add_product_cart_path(product_id: @product.id), method: :post, class: "btn btn-primary" do %>   <!-- Musimy pamietac ze metoda add_product_cart_path jest postowa i musimy ja okreslic (method: :post).   -->
+        <span class="fa fa-shopping-cart">  Dodaj do koszyka </span>                                              <!-- Musimy takze wiedziec, ktory konkretnie produkt bedzie dodawany do koszyka, do kazdej sciezki dodamy argument w postaci hasha     -->
+      <% end %>                                                                                                   <!--   i ten hash bedzie zawarty w danych danego adresu url, wiec przekazemy product_id i przekazac id tego produktu  -->
     </p>
   </div>
   <div class="col-md-7">

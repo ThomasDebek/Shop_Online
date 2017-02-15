@@ -1615,6 +1615,48 @@
               <%= link_to cart_path do %>
 
 
+              - Gdy uruchomiy serwer
+                Widzimy ze wszystko smiga a po kliknieciu na koszyk, prowadzi nas do jego widoku
+                ktorego jeszcze nie mamy
+
+     * Zajmijmy sie teraz naszym przyciskiem - Dodaj do koszyka
+     * Wejdzmy do naszego widoku show kontrollera products
+
+          products/show.html.erb
+
+
+          Póki co ten link nie prowadzi do niczego
+          musimy podac link do akcji prowadzacy do koszyka
+
+               <%= link_to add_product_cart_path(product_id: @product.id), method: :post, class: "btn btn-primary" do %>
+
+
+
+               <div class="container-fluid">
+                 <div class="col-md-5">                                                       <!-- Tutaj takze korzystamy z girda bootstrapowego, bedzie zajmowa 5/12 miejsca na takie rzeczy jak opis, nazwe produtkow, cenne -->
+                   <h1><%= @product.name %></h1>
+                   <p class="lead"><%= @product.description %></p>
+                   <%= simple_format(@product.long_description) %>
+
+                   <p class="lead"><%= number_to_currency(@product.price) %></p>
+                   <p>
+                     <%= link_to add_product_cart_path(product_id: @product.id), method: :post, class: "btn btn-primary" do %>   <!-- Musimy pamietac ze metoda add_product_cart_path jest postowa i musimy ja okreslic (method: :post).   -->
+                       <span class="fa fa-shopping-cart">  Dodaj do koszyka </span>                                              <!-- Musimy takze wiedziec, ktory konkretnie produkt bedzie dodawany do koszyka, do kazdej sciezki dodamy argument w postaci hasha     -->
+                     <% end %>                                                                                                   <!--   i ten hash bedzie zawarty w danych danego adresu url, wiec przekazemy product_id i przekazac id tego produktu  -->
+                   </p>
+                 </div>
+                 <div class="col-md-7">
+                   <%= image_tag @product.photo.url(:details).inspect, class: "img-responsive" %>
+                 </div>
+               </div>
+
+
+           ** I jak teraz odwiezymy i najedziemy na przycisk dodaj do koszyka
+              - widzimy id danego produktu
+
+
+
+
 
 
 
