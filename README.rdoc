@@ -1563,6 +1563,28 @@
                 end
 
 
+     * Teraz stworzym w belce nawigacyjnej podgląd koszyka a w nim:
+       - bedziemy chcieli wyswietlic liczbe produktow
+       - oraz wyswietlic cene sumaryczna wszytkich produktow ktore mamy w koszyku
+
+       ** Zeby to zrobic wykorzystamy metode current_cart ale, nie jest ona teraz dostepna w Widokach!!!
+           - Ta metoda jest dostepna tylko z poziomu kontrollerów
+           - Zeby sie do niej dostac z poziomu widoków - musimy dodac pewna sztuczkę
+           - Railsy nam to udostepniaja po przez dodanie metody:
+
+                  helper_method :current_cart
+
+                  - dzieki temu ta metoda: current_cart jest dostepna we wszystkich widokach jako helper
+
+
+
+     * Skoro mamy juz metody dodajmy teraz widok koszyka w belce nawigacjjnej w Layotsie:  views/layouts/application.html.erb
+
+
+
+
+
+
 
 
 

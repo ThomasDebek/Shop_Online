@@ -22,6 +22,16 @@
         <!-- Czyli tworze sobie tablice, w ktorej pierwsza z nich to nazwa kontrollera a druga nazwa akcji -->
         <!-- I porównuje ja do aktulanego kontrolera w ktorym sie znajduje i akcji jakiej jestem -->
         <!-- Jezeli jest taki sam to podswietlam akcjie -->
+        <ul class="nav navbar-nav navbar-right">                                                 <!-- Nadajmy odpowiednia klase -->
+          <li>
+            <%= link_to "#cart_path" do %>                                                          <!-- Zalinkójmy nasz koszyk, jeszcze nie dziala -->
+                <span class="fa fa-shopping-cart"></span>                                        <!-- Ladna ikone dajmy od font awsome -->
+                <%= current_cart.line_items.map { |e| e.quantity }.sum %>                        <!-- Wyswietlimy liczbe wszystkich produktow -->
+                produktów za
+                <%= number_to_currency(current_cart.line_items.map { |e| e.full_price }.sum) %>  <!-- Wyswietlimy cene wszytkich produkotw -->
+            <% end %>
+          </li>
+        </ul>
       </div>
     </nav>
 

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  helper_method :current_cart
+  helper_method :current_cart          # dzieki temu ta metoda: current_cart jest dostepna we wszystkich WIDOKACH jako helper
 
   def current_cart                     # Ta metoda bedzie zwracala aktualny koszyk
     if session[:order_id]              # Nr. koszyka czyli jego id bedzie przechowywane w sesii
