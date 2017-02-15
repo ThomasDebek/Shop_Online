@@ -1744,6 +1744,16 @@
           - Teraz juz widzimy nasz komunikat
 
 
+     * Zajmijmy sie teraz widokiem show naszego koszyka
+     * Najpierw musimy zainicjowac nasz kontroller akcji show
+              def show
+                @cart = current_cart
+              end
+     * Widok show tego kontrollera views/cart/show.html.erb
+
+
+
+
 
 
 
