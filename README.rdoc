@@ -1491,8 +1491,76 @@
 
 
 9.13 Dodawanie produktow do koszyka
-     - uruchomy zalegla migracje
+     - uruchomy zalegla migracje, ktora stworzy tabele do przejsc dla zamowien
 
+       rake db:migrate
+       rails s
+
+     - Zacznijmy od przejscia do application_controller.rb
+     - Zdefiniowanie w kontrollerze jakiejkolwiek metody sprawi ze bedzie widoczna we wszystkich Kontrolerach naszej aplikacji
+     - Poniewaz jest to sklep i w przyszlości bedzie rozbudowany o wiele innych kontrolerow
+       warto by bylo miec globalny dostep do naszego koszyka
+     - I tutaj zaimplementujemy metody, które znajdują nasz aktualny koszyk
+     - Pierwsza metoda zwracajaca aktulany koszyk:
+               current_cart
+
+                     def current_cart                     # Ta metoda bedzie zwracala aktualny koszyk
+                       if session[:order_id]              # Nr. koszyka czyli jego id bedzie przechowywane w sesii
+                         Order.find(session[:order_id])   # i w momencie kiedy w przeglądarce użytkownika zapisany jest jakis koszyk, to zostanie odnalieziony w BD i zwrócony
+                       else
+                         Order.new                        # W przeciwnym razie kiedy w sesii nie ma zadenego koszyka - to zwracamy swiezy obiekt nie zapisany w BD
+                       end
+                     end
+
+               Pada pytnie, czy bezpieczne jest przychowywanie id zamowienia w sesji ?
+                 - co jesli jakis uzytkownik podmienie zamowienie na jakies inne ?
+                   Odpowiedz jest prosta ponieważ wszytkie coocies sa szyfrowane
+
+     - Druga metodą jest metoda która nam stworzy taki koszyk:
+               current_cart_or_create
+
+                        def current_cart_or_create           # metoda tworzaca koszyk
+                          c = current_cart                   # pobieramy koszyk
+                          if c.new_record?                   # jezeli koszyka jest nowym rekorderm
+                            c.save                           # to zapisujemy go w BD
+                            session[:order_id] = c.id        # Nastepnie zapamietujemy jego nr id w sesji
+                          end
+                          c                                  # i tutaj zwracamy koszyk
+                        end
+
+                                                             # i od teraz nasz current_cart bedzie zwracal nam zamowienie ktore stworzylismy i zapisalismy do BD
+
+
+     - A o to caly ApplicationController
+
+                class ApplicationController < ActionController::Base
+                  # Prevent CSRF attacks by raising an exception.
+                  # For APIs, you may want to use :null_session instead.
+                  protect_from_forgery with: :exception
+
+
+                  helper_method :current_cart
+
+                  def current_cart                     # Ta metoda bedzie zwracala aktualny koszyk
+                    if session[:order_id]              # Nr. koszyka czyli jego id bedzie przechowywane w sesii
+                      Order.find(session[:order_id])   # i w momencie kiedy w przeglądarce użytkownika zapisany jest jakis koszyk, to zostanie odnalieziony w BD i zwrócony
+                    else
+                      Order.new                        # W przeciwnym razie kiedy w sesii nie ma zadenego koszyka - to zwracamy swiezy obiekt nie zapisany w BD
+                    end
+                  end
+
+
+                  def current_cart_or_create           # metoda tworzaca koszyk
+                    c = current_cart                   # pobieramy koszyk
+                    if c.new_record?                   # jezeli koszyka jest nowym rekorderm
+                      c.save                           # to zapisujemy go w BD
+                      session[:order_id] = c.id        # Nastepnie zapamietujemy jego nr id w sesji
+                    end
+                    c                                  # i tutaj zwracamy koszyk
+                  end
+                                                       # i od teraz nasz current_cart bedzie zwracal nam zamowienie ktore stworzylismy i zapisalismy do BD
+
+                end
 
 
 
