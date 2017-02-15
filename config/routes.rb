@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
 
 
-
-  get 'cart/show'
-
-  get 'cart/edit'
-
-  get 'cart/confirmation'
+  # Koszyk
+  # Tutaj mamy sciezki wygenerowane przez generator - nie chcemy ich
+  #get 'cart/show'
+  #get 'cart/edit'
+  #get 'cart/confirmation'
+  resource :cart, controller: "cart", only: [:show, :update, :edit] do    # resource pozwala nam okreslic doklanie do jakiego kontrollera ma prowadzic i okreslic jakie sciezki ma zawierac
+    member do                                                             # i na konkretnym koszyku chcemy miec takie metody
+      post :add_product                                                   # metoda sluzaca do dodawania produktu
+      post :remove_product                                                # metoda do usówania produktu
+    end
+  end
 
   namespace :admin do
     root to:  'products#index'       # i taki zapis spowoduje ze wejscie do akcji /admin przekieruje nas na root glowny-strone glowna

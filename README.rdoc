@@ -1580,6 +1580,40 @@
 
      * Skoro mamy juz metody dodajmy teraz widok koszyka w belce nawigacjjnej w Layotsie:  views/layouts/application.html.erb
 
+                                <!-- Koszyk  -->
+                                <ul class="nav navbar-nav navbar-right">                                                 <!-- Nadajmy odpowiednia klase -->
+                                  <li>
+                                    <%= link_to "#cart_path" do %>                                                       <!-- Zalinkójmy nasz koszyk, jeszcze nie dziala -->
+                                        <span class="fa fa-shopping-cart"></span>                                        <!-- Ladna ikone dajmy od font awsome -->
+                                        <%= current_cart.line_items.map { |e| e.quantity }.sum %>                        <!-- Wyswietlimy liczbe wszystkich produktow -->
+                                        produktów za
+                                        <%= number_to_currency(current_cart.line_items.map { |e| e.full_price }.sum) %>  <!-- Wyswietlimy cene wszytkich produkotw -->
+                                    <% end %>
+                                  </li>
+                                </ul>
+
+
+     * Przejdzmy do naszych routsów i dodajmy nasze sciezki zwiazane z koszykiem
+
+            # Koszyk
+              # Tutaj mamy sciezki wygenerowane przez generator - nie chcemy ich
+              #get 'cart/show'
+              #get 'cart/edit'
+              #get 'cart/confirmation'
+
+
+
+              resource :cart, controller: "cart", only: [:show, :update, :edit] do    # resource pozwala nam okreslic doklanie do jakiego kontrollera ma prowadzic i okreslic jakie sciezki ma zawierac
+                member do                                                             # i na konkretnym koszyku chcemy miec takie metody
+                  post :add_product                                                   # metoda sluzaca do dodawania produktu
+                  post :remove_product                                                # metoda do usówania produktu
+                end
+              end
+
+     * Zmienimy sciezke dostepu w naszym layoutsie skoro mamy juz routsy
+
+              <%= link_to cart_path do %>
+
 
 
 
