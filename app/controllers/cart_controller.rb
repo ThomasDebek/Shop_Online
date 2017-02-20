@@ -4,6 +4,12 @@ class CartController < ApplicationController
   end
 
   def edit
+    @cart = current_cart                             # przypisujemy nasza zmienna do aktualnego koszyka
+    @cart.build_address if @cart.address.blank?       # Wiec warunkowo bedziemy tutaj budowac pusty adres jesli tego adresu jeszcze nie ma w tym zamowieniu
+                                                      # Czyli jesli adres jest pusty to wywolujemy metode build_address i ta metoda spowoduje dodanie do zamowienia nie zapisanego w BD pustego adresu
+                                                     # i tutaj musimy upewnic sie ze do tego zamowienia dodany jest jakis adres
+                                                     # chociazby mialby byc pusty i nie zapisany do BD
+                                                     # do tego adresu dodamy również podformularz i ten adres musi istniec -  chociaz miałby byc pusty i niezapisany w BD
   end
 
   def confirmation

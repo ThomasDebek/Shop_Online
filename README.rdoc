@@ -1834,6 +1834,64 @@
                                                                      # W jaki sposób dodac adres dostawy do zamówienia - przeciez to jest nowy obiekt
                                                                      # Okazuje sie ze RAILSY dodaly mozliwosc edycji wielu obiektów naraz w jednym formularzu
 
+            - Teraz kontroller i ustawmy nasza zmienna
+              controllers/cart_controller.rb
+
+                       def edit
+                          @cart = current_cart                             # przypisujemy nasza zmienna do aktualnego koszyka
+                          @cart.build_address if @cart.address.blank?       # Wiec warunkowo bedziemy tutaj budowac pusty adres jesli tego adresu jeszcze nie ma w tym zamowieniu
+                                                                            # Czyli jesli adres jest pusty to wywolujemy metode build_address i ta metoda spowoduje dodanie do zamowienia nie zapisanego w BD pustego adresu
+                                                                           # i tutaj musimy upewnic sie ze do tego zamowienia dodany jest jakis adres
+                                                                           # chociazby mialby byc pusty i nie zapisany do BD
+                                                                           # do tego adresu dodamy również podformularz i ten adres musi istniec -  chociaz miałby byc pusty i niezapisany w BD
+                       end
+
+            - Przejdzmy teraz do widoku edit controllera cart
+              viws/cart/edit.html.erb
+              - i tutaj umiescimy nasz formularz do adresu, wyboru dostawy, itd...
+
+
+                   I tutaj pojawia sie bardzo ciekawa rzecz:
+                     - czyli na zmiennej f wywolujemy metode simple_fields_for - jest to metoda od simple forma i ona
+                       powoduje wlasnie obsluzenie tych zagniezdzonych atrybutow  (accepts_nested_attributes_for :address )
+                       W momencie kiedy bysmy uzywali zwyklego formularza czyli form_form to w tym przypadku bysmy uzyli        ->  fields_for
+                         czyli nie musimy uzywas simple_forma aby obsluzyc zagniezdzone atrybuty
+                         zwykle railsowe formularze również to obsluguja
+
+
+
+
+                          viws/cart/edit.html.erb
+
+
+                         <h1>Dostawa</h1>
+
+                         <div class="row">
+                           <div class="col-md-6">
+                             <%= simple_form_for @cart, url: cart_path do |f| %>
+                                 <%= f.simple_fields_for :address do |a| %>           <!-- I tutaj pojawia sie bardzo ciekawa rzecz, wywoluje metode simple_fields_for i podajej nazwe assocjaci i tworzymy nowy obiekt formularza i to bedzie taki podformularz  -->
+                                     <%= a.input :email %>                            <!-- I na tym podformularzy wywolujemy kolejne metody aby zbudowac inputy dla konkretnych pol tego podformularza   -->
+                                     <%= a.input :first_name %>                       <!-- Wazne jest to zeby te inputy wywolywac na podformularzu  -->
+                                     <%= a.input :last_name %>
+                                     <%= a.input :city %>
+                                     <%= a.input :zip_code %>
+                                     <%= a.input :street %>
+                                 <% end %>
+                                 <%= f.association :shipping_type, as: :select, prompt: nil %>   <!-- W tym miejscu wybieramy rodzaj dostawy -->
+                                 <%= f.input :comment %>                                         <!-- Dodajemy mozliwosc skomentowania zamowienia -->
+                                 <%= button_tag class: "btn btn-success btn-lg" do %>            <!-- Dodajemy przycisk ktory zapise te dane i pozwoli przejsc dalej-->
+                                     Zapisz i przejdź dalej                                      <!-- Czyli bedzie prowadzil do akcji update i w momencie kiedy akcja zostanie wywolana to wysztkie dane zostana zaktualizowane i uzytkownik bedzie docelowo przekierowany do akcji confirmation gdzie bedzie mógł potierdzic zamowienia  -->
+                                     <span class="fa fa-step-forward"></span>
+                                 <% end %>
+                             <% end %>
+                           </div>
+                         </div>
+
+
+
+                   I gdy wejdziemy na formularz dostawy   http://localhost:3000/cart/edit
+                   to widzimy ze wyglada w oczekiwany sposób
+                    - poniewaz mamy walidacje na niektore pola to simple_form dodaje nam gwiazdke
 
 
 
