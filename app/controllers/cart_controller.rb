@@ -12,6 +12,18 @@ class CartController < ApplicationController
                                                      # do tego adresu dodamy również podformularz i ten adres musi istniec -  chociaz miałby byc pusty i niezapisany w BD
   end
 
+
+
+  def update
+    @cart = current_cart                                                 # standardowo ustawiamy aktulany koszyk
+    if @cart.update_attributes(cart_attributes)                          # zdefinjujemy metode cart_attributess ktora dzieki za pomoca strong_params pobierze odpowiednie atrybuty z paramsow
+      @cart.update_attribute(:shipping_cost, @cart.shipping_type.cost)   # - czyli pobieramy aktualny koszt jaki zostal wybrane przez tego uzytkowniaka. W momiecie kiedy uzytkownik wybieze sposob dostawy musimy zapamietac cene dostawy na wypadek gdyby jakis administarator zmienil cene
+      redirect_to confirmation_cart_path                                 # jezeli uda sie zapisac te dane to przekierowujemy uzytkownika do akcji potwierdzenia zamowienia
+    else
+      render action: :edit                                               # w przeciwnym przypadku renderujemy akcje edit - czyli standart z kazdego cruda
+    end
+  end
+
   def confirmation
   end
 
@@ -42,6 +54,27 @@ class CartController < ApplicationController
     end
     redirect_to :back, notice: "Usunięto produkt z koszyka"      # po usunieciu wracamy na poprzednią strone
   end                                                            # Jezeli podamy BACK to zawsze wracamy na poprzednią strone - niezaleznie jaka ona jest
+
+
+
+  private
+
+  def cart_attributes                  # dodajmy metode potrzebna nam do metody edit (oczywiscie uzywamy metody strong_params aby bezpiecznie pobrac atrybuty naszego zamowienia)
+    params.require(:order).permit(     # Czyli standardowo wymagam istnienia parametru Order i z tego parametru zezwalamy na atrubut
+        :shipping_type_id,               # czyli identyfikator sposobu dostawy
+        :comment,                        # komentarz
+        :address_attributes => [       # Tutaj zasugerujemy, ze bedziemy miec zagniezdzone atrybuyty
+            :first_name,
+            :last_name,
+            :city,
+            :zip_code,
+            :street,
+            :email
+        ]
+    )
+  end
+
+
 
 
 end
