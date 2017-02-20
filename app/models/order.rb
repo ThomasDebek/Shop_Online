@@ -7,6 +7,16 @@ class Order < ActiveRecord::Base
   has_one :address           # datkowow zamowienie bedzie mialo jeden adres
 
 
+  accepts_nested_attributes_for :address      # czyli deklarujemy ze akceptujemy zagnieżdzone atrybuty dla tej asocjacji
+                                              # i od tego momentu gdy na klasie Order wywołamy metode np update_attributes
+                                              # to atrybuty z adresem takze beda przetwarzane
+                                              # i odpowiednie rekordy zostaną zapisane do BD
+                                              # Dodajemy to poniewaz pojawia sie pytanie
+                                              # W jaki sposób dodac adres dostawy do zamówienia - przeciez to jest nowy obiekt
+                                              # Okazuje sie ze RAILSY dodaly mozliwosc edycji wielu obiektów naraz w jednym formularzu
+
+
+
   has_many :transitions, class_name: "OrderTransition", autosave: false   # Na podstawie tej asocjacji STATESMAN bedzie obliczal w jakim aktualnie statusie jest zamowienie
 
   # Kolejna wazna rzecza jest delegacja

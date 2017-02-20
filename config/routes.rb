@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do                                                             # i na konkretnym koszyku chcemy miec takie metody
       post :add_product                                                   # metoda sluzaca do dodawania produktu
       post :remove_product                                                # metoda do usówania produktu
+      get  :confirmation                                                  # a tutaj nowa akcja, czyli to bedzie przycisk który bedzie potwierdzał zamówienie
     end
   end
 

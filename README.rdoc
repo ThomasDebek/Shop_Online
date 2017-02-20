@@ -1789,6 +1789,53 @@
                            <% end %>
 
 
+     * Tym razem zajme sie edycja naszego koszyka
+       W momecie kiedy uzytkownik zapisze swój koszyk i wybierze sposób dostawy i doda komentarz
+       to bedzie maiał przycisk, który bedzie prowadził do nastepnego ekranu czyli do potwierdzenia złożenia
+       zamówienia.
+       I tam uzytkownik bedzie mógł zobaczyc podsumowanie swojego zamówienia
+         - ile bedzie razem kosztowało z kosztem dostawy
+         - i bedzie mógł kliknąc przycisk który ostatecznie złozy zamówienie
+         - ta akcja bedzie akacja getowa i bedzie nosic nazwe confirmation
+                  * Zacznijmy od Routsów i ustawmy sciezki
+                         resource :cart, controller: "cart", only: [:show, :update, :edit] do    # resource pozwala nam okreslic doklanie do jakiego kontrollera ma prowadzic i okreslic jakie sciezki ma zawierac
+                            member do                                                             # i na konkretnym koszyku chcemy miec takie metody
+                              post :add_product                                                   # metoda sluzaca do dodawania produktu
+                              post :remove_product                                                # metoda do usówania produktu
+                              get  :confirmation                                                  # a tutaj nowa akcja, czyli to bedzie przycisk który bedzie potwierdzał zamówienie
+                            end
+                          end
+
+       ** Idzimy teraz do naszego formularza  cart/edit  w ktorym umozliwimy takie rzeczy jak
+           - dodanie komentarza
+           - sposób dostawy
+           - oraz edycja adresu dostawy
+
+           ???
+           I tutaj pojawia sie pytnie
+           W jaki sposób dodac adres dostawy do zamówienia - przeciez to jest nowy obiekt
+           Okazuje sie ze RAILSY dodaly mozliwosc edycji wielu obiektów naraz w jednym formularzu
+            - ale pod warunkiem oczywiscie ze istnieja jakies asocjacje pomiedzy tymi obiektami
+              Funkcjonalosc ta nazywa sie:
+                                           nested attributes
+
+            - Otwórzmy nasze modele i zainicjujmy nasze połączenie
+                  * W pierwszej kolejnosci nasz model Order
+                    a w nim zadeklarujmy ze chcemy uzyc tej asocjacji dla modelu address
+                    i deklaracje podajemey z argumentem acceptes
+
+                    models/order.rb
+
+                        accepts_nested_attributes_for :address      # czyli deklarujemy ze akceptujemy zagnieżdzone atrybuty dla tej asocjacji
+                                                                     # i od tego momentu gdy na klasie Order wywołamy metode np update_attributes
+                                                                     # to atrybuty z adresem takze beda przetwarzane
+                                                                     # i odpowiednie rekordy zostaną zapisane do BD
+                                                                     # Dodajemy to poniewaz pojawia sie pytanie
+                                                                     # W jaki sposób dodac adres dostawy do zamówienia - przeciez to jest nowy obiekt
+                                                                     # Okazuje sie ze RAILSY dodaly mozliwosc edycji wielu obiektów naraz w jednym formularzu
+
+
+
 
 
 
