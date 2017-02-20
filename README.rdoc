@@ -1937,7 +1937,77 @@
                       - i klikamy do przejdz dalej
                       - i udalo nam sie dojsc do kroku konfirmation
 
-                      
+
+
+       - Dotarlismy do potwiedzenia zamowienia - Confirmation
+         * Routes
+           - dodajmy przycisk prowadzacy do potwierdzenia zamowienie i nazwijmy do finisz
+                        resource :cart, controller: "cart", only: [:show, :update, :edit] do    # resource pozwala nam okreslic doklanie do jakiego kontrollera ma prowadzic i okreslic jakie sciezki ma zawierac
+                           member do                                                             # i na konkretnym koszyku chcemy miec takie metody
+                             post :add_product                                                   # metoda sluzaca do dodawania produktu
+                             post :remove_product                                                # metoda do usówania produktu
+                             get  :confirmation                                                  # a tutaj nowa akcja, czyli to bedzie przycisk który bedzie potwierdzał zamówienie
+                             post :finish                                                        # przycisk akcji kaczacy zamowienie
+                           end
+                        end
+
+           - zainicjumy teraz nasz widok views/cart/confirmation.html.erb
+
+                     <h1>Potwierdź zamówienie</h1>
+
+                     <table class="table table-striped">
+                       <thead>
+                       <th>Produkt</th>
+                       <th>Liczba sztuk</th>
+                       <th>Cena jednostkowa</th>
+                       <th>Cena całkowita</th>
+                       </thead>
+                       <tbody>
+                       <% @cart.line_items.each do |line_item| %>
+                           <tr>
+                             <td><%= link_to line_item.item_name, product_path(line_item.product) %>
+                             <td><%= line_item.quantity %></td>
+                             <td><%= number_to_currency line_item.unit_price %></td>
+                             <td><%= number_to_currency line_item.full_price %></td>
+                           </tr>
+                       <% end %>
+                       <tr>
+                         <td>Dostawa: <%= @cart.shipping_type.name %></td>                  <!-- Dodatkowo dodajemy koszt dostawy -->
+                         <td></td>
+                         <td colspan="2"><%= number_to_currency @cart.shipping_cost %></td>  <!-- Wyswietlamy cene i rodzaj dostawy -->
+                       </tr>
+                       <tr>
+                         <td colspan="4"><hr/></td>
+                       </tr>
+                       <tr>
+                         <th>Całość</th>
+                         <td></td>
+                         <td colspan="2"><%= number_to_currency @cart.full_cost %></td>       <!-- Calkowity koszt -->
+                       </tr>
+                       </tbody>
+                     </table>
+
+                     <%= link_to finish_cart_path, method: :post, class: "btn btn-success btn-lg" do %>   <!-- link prowadzacy do akcji ktora sklada to zamowienie -->
+                         <span class="fa fa-check"></span>
+                         Potwierdzam zamówienie z obowiązkiem zapłaty
+                     <% end %>
+
+
+           - gdy odswiezymy widzimy ze zmienna cart jest nilem - spr, czemu tak sie stalo
+           - poniewaz akcja confirmation jest zupelnie PUSTA  w kontrolerze
+
+                        def confirmation
+                            @cart = current_cart      # standardowo musimy ustawic na aktualny koszyk
+                        end
+
+           - gdy odswiezymy, mamy oczekiwany efekt
+                        
+
+
+
+
+
+
 
 
 

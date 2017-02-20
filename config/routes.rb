@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post :add_product                                                   # metoda sluzaca do dodawania produktu
       post :remove_product                                                # metoda do usówania produktu
       get  :confirmation                                                  # a tutaj nowa akcja, czyli to bedzie przycisk który bedzie potwierdzał zamówienie
+      post :finish                                                        # przycisk akcji kaczacy zamowienie
     end
   end
 

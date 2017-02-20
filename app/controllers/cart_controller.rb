@@ -25,6 +25,7 @@ class CartController < ApplicationController
   end
 
   def confirmation
+    @cart = current_cart                                                 # standardowo musimy ustawic na aktualny koszyk
   end
 
 
