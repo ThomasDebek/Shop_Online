@@ -17,6 +17,7 @@ class Order < ActiveRecord::Base
 
 
 
+
   has_many :transitions, class_name: "OrderTransition", autosave: false   # Na podstawie tej asocjacji STATESMAN bedzie obliczal w jakim aktualnie statusie jest zamowienie
 
   # Kolejna wazna rzecza jest delegacja

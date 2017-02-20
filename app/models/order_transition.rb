@@ -2,7 +2,7 @@ class OrderTransition < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordTransition
 
 
-  belongs_to :order, inverse_of: :order_transitions
+  belongs_to :order, inverse_of: :transitions
   #i zmienimy tu jedna rzecz:
   # Widzimy ze jest napisane order_transitions ale my zmienimy na transitions
   #       zmieniamy z :   belongs_to :order, inverse_of: :order_transitions
@@ -15,4 +15,4 @@ class OrderTransition < ActiveRecord::Base
   #     ale bedzie tez opisywalo ze chodzi o odwrotna strone asocjacji transitions
 
 
-  end
+end

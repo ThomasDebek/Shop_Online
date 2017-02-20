@@ -2001,11 +2001,75 @@
                         end
 
            - gdy odswiezymy, mamy oczekiwany efekt
-                        
 
 
 
 
+       * Teraz ostatni krok czyli zaimplementowanie akcji finish
+        - i ta akcja bedzie robila
+
+               controllers/cart_controller.rb
+
+                    def finish
+                        @cart = current_cart                          # Standardowo musimy znalezc nasze zamowienie
+                        @cart.transition_to :confirmed                # zmieniamy statos naszego zamowienia na confirmed, czyli uzyjemy naszej maszyny stanow
+                        session.delete(:order_id)                     # nastepnie jak zmienlismy stan zamowienia na zatwierdzony to usuniemy to zamowienie z sesji i ten koszyk przestaje byc koszykiem i staje sie prawdziwym zamowieniem i musi zniknac z sesji i od teraz jezeli uzytkownik doda jakis produkt to bedzie on dodany do nowego koszyka
+                        flash[:notice] = "Dziękujemy za zamówienie!"  # ustawiamy wiadomosc
+                        redirect_to root_path                         # przekierowujemy uzytkownika na strone glowna
+                    end
+
+
+        - Zerknijmy jeszcze na maszyne stanow zwiazana z zamowieniem
+
+                 models/order_state_machine.rb
+
+                         after_transition(to: :confirmed) do |order, transition|
+                             OrderMailer.order_confirmation(order).deliver            # Tu dziekujemy za zloznie zamowienia
+                         end
+
+
+                         widzimy gdy w momencie stan zostanie zmieniony na confirm
+                         to zostanie wyslany email do uzytownika
+
+
+        - Szablony do naszych zamowien przechowywane sa w :
+                          views/order_mailer/order_confirmation.html.erb
+
+                          - zmienmy go aby wyswietlil nam sie jakis sensowny komunikat
+
+                                  <p>Dziękujemy za zamówienie!</p>
+
+        - Uzupelnmy teraz pozostale szablony do maili, cancelled, in_progres, shipped
+
+
+
+     - Sprawdzimy czy dziala klikajac przycisk potwierdzajacy zamowienie
+     - nie
+             - mamy blad
+             - zmienmy w models/order_transitons.rb
+
+                 class OrderTransition < ActiveRecord::Base
+                   include Statesman::Adapters::ActiveRecordTransition
+
+
+                   belongs_to :order, inverse_of: :transitions                             # Tu na transitions
+                   #i zmienimy tu jedna rzecz:
+                   # Widzimy ze jest napisane order_transitions ale my zmienimy na transitions
+                   #       zmieniamy z :   belongs_to :order, inverse_of: :order_transitions
+                   #                 na:   belongs_to :order, inverse_of: :transitions
+                   #
+                   # ^ inverse_of - ogolnie opisuje nazwe stansakcji ktora jest w druga strone
+                   #   - wiec jezeli zamowienie bedzie mialo wiele transitions, czyli przejsc
+                   #     pomiedzy jednym stanem a drugim
+                   #     to pojedyncze transitions oczywiscie bedzie nalezalo do zamoienia
+                   #     ale bedzie tez opisywalo ze chodzi o odwrotna strone asocjacji transitions
+
+
+                 end
+
+
+      - i widzimy ze letter_opener wyslal nam maila - czyli dokladnie tak jak zadeklarowalismy w naszej maszynie stanow
+        a na stronie głowniej mamy komunikat dziekujemy za zamowienie 
 
 
 

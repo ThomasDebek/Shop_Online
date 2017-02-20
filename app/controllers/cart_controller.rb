@@ -28,6 +28,14 @@ class CartController < ApplicationController
     @cart = current_cart                                                 # standardowo musimy ustawic na aktualny koszyk
   end
 
+  def finish
+    @cart = current_cart                          # Standardowo musimy znalezc nasze zamowienie
+    @cart.transition_to :confirmed                # zmieniamy statos naszego zamowienia na confirmed, czyli uzyjemy naszej maszyny stanow
+    session.delete(:order_id)                     # nastepnie jak zmienlismy stan zamowienia na zatwierdzony to usuniemy to zamowienie z sesji i ten koszyk przestaje byc koszykiem i staje sie prawdziwym zamowieniem i musi zniknac z sesji i od teraz jezeli uzytkownik doda jakis produkt to bedzie on dodany do nowego koszyka
+    flash[:notice] = "Dziękujemy za zamówienie!"  # ustawiamy wiadomosc
+    redirect_to root_path                         # przekierowujemy uzytkownika na strone glowna
+  end
+
 
   def add_product
     order = current_cart_or_create                            # tworzymy i zapisujemy do BD
