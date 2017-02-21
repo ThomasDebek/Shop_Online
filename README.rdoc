@@ -2069,7 +2069,150 @@
 
 
       - i widzimy ze letter_opener wyslal nam maila - czyli dokladnie tak jak zadeklarowalismy w naszej maszynie stanow
-        a na stronie głowniej mamy komunikat dziekujemy za zamowienie 
+        a na stronie głowniej mamy komunikat dziekujemy za zamowienie
+
+
+
+
+9.14 Panel Admina - zarzadzanie zamowieniami
+     * Brakuje nam sekcji w panelu admina aby zarzadzac zamowieniami
+     * Zatem wygenerujmy nasz kontroller
+       - nasz kontroller bedzie zawarty w przestrzenie nazw admin
+       - i biedzie zawierał nastepujace akcje
+
+           rails g controller admin/orders index show
+
+     * Teraz do naszego pliku z sciezkami musimy dodac odpowiednie sciecki - Routes
+
+                 namespace :admin do
+                     root to:  'products#index'       # i taki zapis spowoduje ze wejscie do akcji /admin przekieruje nas na root glowny-strone glowna
+                     resources :products
+                     resources :categories
+                     resources :orders, only: [:show, :index, :update]      # Sciezki aby zarzadzac zamowieniami
+                 end
+
+     * Dodatkowo musimy pamietac aby otworzyc layouts admin i dodac link prowadzacy do zamowien
+
+                 <li <% if params[:controller] == "admin/orders" %>class="active"<% end %>><%= link_to "Zamówienia", admin_orders_path %></li>
+
+               <ul class="nav navbar-nav">
+                     <li <% if params[:controller] == "admin/products" %>class="active"<% end %>><%= link_to "Produkty", admin_products_path %></li>
+                     <li <% if params[:controller] == "admin/categories" %>class="active"<% end %>><%= link_to "Kategorie", admin_categories_path %></li>
+                     <li <% if params[:controller] == "admin/orders" %>class="active"<% end %>><%= link_to "Zamówienia", admin_orders_path %></li>
+               </ul>
+
+        - Sprawdzmy czy smiga   http://localhost:3000/admin
+          : widzimy ze pojawila sie sekcja zamowienia
+
+
+     * Idzmy teraz do kontrollera  admin/orders_controller.rb
+       - akcja index bedzie bardzo prosta
+
+       % wywolamy metode od Statesmana ktory zwroci nam wszytkie zamowienia ktore juz sa zlozone
+         a nie sa koszykami
+         i uzyjemy metody od Statesmana ktora sie nazywa not_in_state i wymieniamy w ktorych stanach me tej metody nie byc
+         nie chcemy jej wylacznie w stanie new
+
+               def index
+                  @orders = Order.not_in_state(:new).page(params[:page]).per(20)
+               end
+
+     * Skoro mamy juz routsy , controller, to przejdzmy do widoku akcji index naszego zamówienia
+        - mamy tu nic specjalnego
+        - zwyczajajna tabelka wymieniajca wszytkie zamowienia
+        - mamy paginacjie
+        - linka do szczegolów zamówienia
+        - i szczegóły zamowienia tj: pelny koszt,aktualny stan, sformatowana data zamowienia i nr.id
+
+        views/admin/orders/index
+
+
+               <h1>Zamówienia</h1>
+               <table class="table table-striped">
+                 <thead>
+                 <tr>
+                   <th>id</td>
+                   <th>Data utworzenia</th>
+                   <th>Status</th>
+                   <th>Suma</th>
+                   <th></th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <% @orders.each do |order| %>
+                     <tr>
+                       <td>#<%= order.id %></td>
+                       <td><%= l order.created_at, format: :long %></td>
+                       <td><%= order.current_state %></td>
+                       <td><%= number_to_currency order.full_cost %></td>
+                       <td>
+                         <%= link_to "Edycja", admin_order_path(order), class: "btn btn-default btn-xs" %>
+                       </td>
+                     </tr>
+                 <% end %>
+                 </tbody>
+               </table>
+
+               <%= paginate @orders %>
+
+     * Jak odsiwezymy strone widzimy ze wszystko smiga http://localhost:3000/admin/orders
+       - wyswitelmy statsu zamowienia po polsku  - confirmed
+
+       - nasz state_machine ma metode states_map
+         ktora mampuje rubiowe nazwy na polskie odpowiedniki
+
+         models/order_state_machine.rb
+
+                def self.states_map
+                    {
+                        "new" => "Niepotwierdzone",
+                        "confirmed" => "Złożone przez klienta",
+                        "in_progress" => "Przyjęte do realizacji",
+                        "shipped" => "Wysłane",
+                        "cancelled" => "Anulowane",
+                    }
+                end
+
+
+         a zeby nam sie wyswietlalo po polsku musimy zrobic takie cos:)
+
+            <td><%= OrderStateMachine.states_map[order.current_state] %></td>   <!-- Zmieniamy na polska nazwe. Czyli Pobieramy wartosc pod kluczem ktorego nazwa jest aktualny stan   -->
+
+
+         - czyli nasz widok bedzie wygladal tak:
+
+                   <h1>Zamówienia</h1>
+                   <table class="table table-striped">
+                     <thead>
+                     <tr>
+                       <th>id</td>
+                       <th>Data utworzenia</th>
+                       <th>Status</th>
+                       <th>Suma</th>
+                       <th></th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <% @orders.each do |order| %>
+                         <tr>
+                           <td>#<%= order.id %></td>
+                           <td><%= l order.created_at, format: :long %></td>
+                           <td><%= OrderStateMachine.states_map[order.current_state] %></td>   <!-- Zmieniamy na polska nazwe. Czyli Pobieramy wartosc pod kluczem ktorego nazwa jest aktualny stan   -->
+                           <td><%= number_to_currency order.full_cost %></td>
+                           <td>
+                             <%= link_to "Edycja", admin_order_path(order), class: "btn btn-default btn-xs" %>
+                           </td>
+                         </tr>
+                     <% end %>
+                     </tbody>
+                   </table>
+
+                   <%= paginate @orders %>
+
+         - i gdy odswiezymy widzimy ze status wyswietlony jest po polsku 
+
+
+
 
 
 

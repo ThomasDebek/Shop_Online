@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  # To takze usówamy i dajemy to w naszmym admine
+        #namespace :admin do
+        #get 'orders/index'
+        #end
+
+        #namespace :admin do
+        #get 'orders/show'
+        #end
 
   # Koszyk
   # Tutaj mamy sciezki wygenerowane przez generator - nie chcemy ich
@@ -19,6 +27,7 @@ Rails.application.routes.draw do
     root to:  'products#index'       # i taki zapis spowoduje ze wejscie do akcji /admin przekieruje nas na root glowny-strone glowna
     resources :products
     resources :categories
+    resources :orders, only: [:show, :index, :update]      # Sciezki aby zarzadzac zamowieniami
   end
   # gdy wpiszemy adres /admin/products  - to wejdziemy na products
   # a co jezeli wpiszemy /admin - to tu takze powinien nas skierowac w odpowiednia akcje
