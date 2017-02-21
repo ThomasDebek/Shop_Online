@@ -2304,7 +2304,16 @@
 
         - gdy odswiezymy strone widzimy oczekiwany efekt http://localhost:3000/admin/orders/3
 
+     * Obsluzymy teraz stan z nszej maszyny
+       - dodajmy metode update w naszym kontrolerze controllers/admin/orders_controller.rb
 
+
+
+                     def update
+                        @order = Order.find(params[:id])     # znajdujemy zamowienie
+                        @order.transition_to params[:state]  # pobieramy stan z paramsow i próbujemy przejsc w ten stan ktory jest w paramsach
+                        redirect_to admin_order_path(@order), notice: "Pomyślnie zmieniono zamówienie."  # i jak udalo nam sie zmienic ten stan wracamy do szczegołow zamówienia
+                     end
 
 
 
