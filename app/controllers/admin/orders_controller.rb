@@ -4,5 +4,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])   # akcja show - jest ona dosc trywialna, po prostu znajdujemy zamówienie po id
   end
 end
