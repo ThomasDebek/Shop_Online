@@ -2315,10 +2315,60 @@
                         redirect_to admin_order_path(@order), notice: "Pomyślnie zmieniono zamówienie."  # i jak udalo nam sie zmienic ten stan wracamy do szczegołow zamówienia
                      end
 
+       - i gdy teraz uruchomimy api i zmieniemy na stan przyjety do realizacji
+         widzimy ze zostal wyslany email do klijeta jak również został wyswietlony komunikat
 
 
 
+  ****** I TUTUAJ POPELNILISMY KRYTYCZNY BLAD - KTORY NIE MOZE MIEC MIEJSCA  czyli:
 
+         Nasz konroller uzywa layoutsu głownego sklepu
+         - a wiec nie dziedziczy z bazowej klasy dla admina
+         - krotko mówiac ta sekacja jest dostepna dla zwyklych uzytkownikow
+
+         Za kazdym razem gdy implementujemy taka sekcjie musimy sie upewnic ze jest ona
+         odpowiednio zabezpieczona:
+         - przejdzmy do naszego kontrollera
+         - widzimy ze nie jest zabezpieczony
+
+
+               class Admin::OrdersController < ApplicationController
+                 def index
+                   @orders = Order.not_in_state(:new).page(params[:page]).per(20)   # uzyjemy metody od Statesmana -  i wymieniamy w ktorych stanach me tej metody nie byc, nie chcemy jej wylacznie w stanie new, i oczywiscie paginacja, i chce miec 20 zamowien na kazdej stronie
+                 end
+
+                 def show
+                   @order = Order.find(params[:id])   # akcja show - jest ona dosc trywialna, po prostu znajdujemy zamówienie po id
+                 end
+
+                 def update
+                   @order = Order.find(params[:id])     # znajdujemy zamowienie
+                   @order.transition_to params[:state]  # pobieramy stan z paramsow i próbujemy przejsc w ten stan ktory jest w paramsach
+                   redirect_to admin_order_path(@order), notice: "Pomyślnie zmieniono zamówienie."  # i jak udalo nam sie zmienic ten stan wracamy do szczegołow zamówienia
+                 end
+               end
+
+
+               na:
+
+                  class Admin::OrdersController < Admin::BaseController       # Musimy zmienic klase bazowa - dzieki czemu zabezpieczamy sie haslem
+
+
+         - gdy teraz odswiezymy strone widzimy ze nasz widok pochodziu juz z panelu admina
+         - i dzieki tej operacji widzimy,ze nasz kontroller jest juz zabezpieczony haslem
+           poniewaz wszystkie kontrollery dziedziczace po BaseController sa zabezpieczone haslem
+
+
+
+         - Widzimy ze nasze zamowienie jest przyjete do realizacji
+           spr. wyslac to zamowienie
+           otrzymujemy maila ze twoje zamoienie zostalo wyslane
+           i gdy teraz wejdziemy do wszystkich naszych zamowien to widzimy ze zamowienie zostalo wyslane
+         - A gdybysmy chcieli wyslac jeszcze raz to zamowienie
+           to gdy wejdziemy do edycji to widzimy ze maszyna stanow wyłaczyła juz niektóre stany
+           i nie pozwala przejsc do tych stanow
+           http://localhost:3000/admin/orders/3
+         - sprobujemy jeszcze anulowac - i tu tez dziala dobrze
 
 
 
