@@ -2370,6 +2370,8 @@
            http://localhost:3000/admin/orders/3
          - sprobujemy jeszcze anulowac - i tu tez dziala dobrze
 
+9.16 Pomysly na rozwój sklepu
+
 
 
 
